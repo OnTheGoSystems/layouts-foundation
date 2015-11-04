@@ -16,6 +16,8 @@ Version: 0.0.1
  */
 final class WPDDL_Integration_Boilerplate {
 
+	const SUPPORTED_INTEGRATION_API_VERSION = 1;
+
 	private static $instance = null;
 
 	public static function get_instance() {
@@ -27,11 +29,18 @@ final class WPDDL_Integration_Boilerplate {
 
 
 	private function __construct() {
-		add_action( 'wpddl_theme_integration_support_ready', array( $this, 'initialize' ) );
+		add_action( 'wpddl_theme_integration_support_ready', array( $this, 'initialize' ), 10, 2 );
 	}
 
 
-	public function initialize() {
+	public function initialize(
+		/** @noinspection PhpUnusedParameterInspection */ $layouts_version = null,
+		$integration_api_version = 0 )
+	{
+		if( self::SUPPORTED_INTEGRATION_API_VERSION != $integration_api_version ) {
+			return;
+		}
+
 		if( ! $this->is_theme_active() ) {
 			return;
 		}
