@@ -122,6 +122,9 @@ class WPDDL_Integration_Setup {
 	 *     - add $this->clearContent() to some filters to remove unwanted site structure elements
 	 */
 	private function addLayoutsSupport() {
+
+		WPDDL_Integration_Theme_Template_Router::get_instance();
+
 		/*remove_action( 'genesis_loop', 'genesis_do_loop' );
 		add_action( 'genesis_loop', function() { the_ddlayout(); } );
 
