@@ -1,0 +1,36 @@
+.wrap {
+    padding: 40px 0;
+}
+
+nav .wrap {
+    padding: 0;
+}
+
+.site-inner {
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+}
+
+.row.wrap {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+/* ## Site Header Navigation
+--------------------------------------------- */
+
+.header-widget-area {
+    float: right;
+    text-align: right;
+}
+.header-widget-area .sub-menu {
+    border-top: 1px solid #eee;
+}
+
+.header-widget-area .sub-menu .sub-menu {
+    margin-top: -56px;
+}
+
+.header-widget-area .genesis-nav-menu li li {
+    margin-left: 0;
+}
