@@ -1,8 +1,7 @@
 <?php
-/**
- * Class Layouts_Integration_Setup
- */
-class Layouts_Integration_Setup {
+
+
+class WPDDL_Integration_Setup {
 
 	private static $instance;
 
@@ -10,7 +9,7 @@ class Layouts_Integration_Setup {
 	private function __construct() {}
 
 	/**
-	 * @return Layouts_Integration_Setup
+	 * @return WPDDL_Integration_Setup
 	 */
 	public static function getInstance() {
 		if( self::$instance === null )
@@ -19,10 +18,12 @@ class Layouts_Integration_Setup {
 		return self::$instance;
 	}
 
+
 	/**
 	 * Run Integration
 	 */
 	public function run() {
+
 		// add Bootstrap support
 		add_action( 'wp_enqueue_scripts', array( $this, 'addBootstrapSupport' ), 1 );
 
@@ -33,11 +34,21 @@ class Layouts_Integration_Setup {
 		add_action( 'admin_enqueue_scripts', array( $this, 'AdminCSSModifications' ), 2 );
 
 
-		$this->addLayoutsSupport()
-		     ->addLayoutCells()
-		     ->modifyThemeSettings()
-			 ->modifyThemeWidgets();
+		$this->addLayoutsSupport();
+		$this->tellLayoutsAboutTheme();
+		$this->addLayoutCells();
+		$this->modifyThemeSettings();
 	}
+
+
+	/**
+	 * @todo Set supported theme version here.
+	 * @return string
+	 */
+	private function getSupportedThemeVersion() {
+		return '';
+	}
+
 
 	/**
 	 * Bootstrap Support
@@ -65,18 +76,19 @@ class Layouts_Integration_Setup {
 		wp_enqueue_script( 'bootstrap' );
 	}
 
+
 	/**
 	 * CSS Modifications
 	 */
 	public function CSSModifications() {
 		wp_register_style(
-			'layouts-theme-support-genesis',
-			plugins_url( '/../public/css/layouts-genesis.css', __FILE__ ),
+			'layouts-theme-integration-frontend',
+			plugins_url( '/../public/css/custom-frontend.css', __FILE__ ),
 			array(),
-			'2.2.3' // supported genesis version
+			$this->getSupportedThemeVersion()
 		);
 
-		wp_enqueue_style( 'layouts-theme-support-genesis' );
+		wp_enqueue_style( 'layouts-theme-integration-frontend' );
 
 	}
 
@@ -85,20 +97,26 @@ class Layouts_Integration_Setup {
 	 */
 	public function AdminCSSModifications() {
 		wp_register_style(
-			'layouts-theme-support-genesis-admin',
-			plugins_url( '/../public/css/layouts-genesis-admin.css', __FILE__ ),
+			'layouts-theme-integration-backend',
+			plugins_url( '/../public/css/custom-backend.css', __FILE__ ),
 			array(),
-			'2.2.3' // supported genesis version
+			$this->getSupportedThemeVersion()
 		);
 
-		wp_enqueue_style( 'layouts-theme-support-genesis-admin' );
+		wp_enqueue_style( 'layouts-theme-integration-backend' );
 	}
+
 
 	/**
 	 * Layouts Support
+	 *
+	 * @todo Implement theme-specific logic here. For example, you may want to:
+	 *     - replace theme loop by the_ddlayout()
+	 *     - remove headers, footer, sidebars, menus and such
+	 *     - add $this->clearContent() to some filters to remove unwanted site structure elements
 	 */
 	private function addLayoutsSupport() {
-		remove_action( 'genesis_loop', 'genesis_do_loop' );
+		/*remove_action( 'genesis_loop', 'genesis_do_loop' );
 		add_action( 'genesis_loop', function() { the_ddlayout(); } );
 
 		show_admin_bar( false );
@@ -130,67 +148,50 @@ class Layouts_Integration_Setup {
 		// @todo make sure the site structure does not get destroyed and remove the filter later on
 		add_filter( 'genesis_markup__output', array( $this, 'clearContent' ) );
 
-		// say Layouts that the theme supports Layouts
-		$theme = wp_get_theme();
-		$options_manager = new WPDDL_Options_Manager( 'ddl_template_check' );
-		if( ! $options_manager->get_options( 'theme-' . $theme->get('Name') ) )
-			$options_manager->update_options( 'theme-' . $theme->get('Name'), 1 );
-
-		return $this;
+		unregister_sidebar( 'sidebar' );
+		unregister_sidebar( 'sidebar-alt' );*/
 	}
 
+
 	/**
-	 * Add Genesis Elements to Layouts
-	 * @return $this
+	 * Layouts that the active theme supports Layouts.
+	 */
+	private function tellLayoutsAboutTheme() {
+		$theme = wp_get_theme();
+		$options_manager = new WPDDL_Options_Manager( 'ddl_template_check' );
+		$option_name = 'theme-' . $theme->get('Name');
+		if( ! $options_manager->get_options( $option_name ) ) {
+			$options_manager->update_options( $option_name, 1 );
+		}
+	}
+
+
+	/**
+	 * Add custom theme elements to Layouts.
+	 *
+	 * @todo Setup your custom layouts cell here.
 	 */
 	private function addLayoutCells() {
 
 		// Widget Header Right
-		$widget_header_right = new Layouts_Integration_Layouts_Cell_Widget_Header_Right();
-		$widget_header_right->setup();
+		/*$widget_header_right = new Layouts_Integration_Layouts_Cell_Widget_Header_Right();
+		$widget_header_right->setup();*/
 
-		// Title Area
-		$title_area = new Layouts_Integration_Layouts_Cell_Title_Area();
-		$title_area->setup();
-
-		// Menu
-		$menu = new Layouts_Integration_Layouts_Cell_Menu();
-		$menu->setup();
-
-		// Breadcrumbs
-		$breadcrumbs = new Layouts_Integration_Layouts_Cell_Breadcrumbs();
-		$breadcrumbs->setup();
-
-
-		return $this;
 	}
 
+
 	/**
-	 * This function is used to remove all Genesis settings which are obsolete with the use of Layouts
+	 * This function is used to remove all theme settings which are obsolete with the use of Layouts
 	 * i.e. "Default Layout" in "Theme Settings"
+	 *
+	 * @todo You can either use this class for very simple tasks or create classes in application/theme/settings, which
+	 * @todo     implement the WPDDL_Integration_Theme_Settings_Interface interface.
 	 */
 	public function modifyThemeSettings() {
 
-		// remove "Default Layouts" in Genesis > Theme Settings
-		add_action( 'load-toplevel_page_genesis', array( 'Layouts_Integration_Theme_Settings_Default_Layouts', 'setup' ), 100 );
 
-		// remove "Blog Page Template" in Genesis > Theme Settings
-		add_action( 'load-toplevel_page_genesis', array( 'Layouts_Integration_Theme_Settings_Blog_Page_Template', 'setup' ), 100 );
-
-		// replace default "Breadcrumb" option with a hint to a new Layouts Element
-		add_action( 'genesis_admin_before_metaboxes', array( 'Layouts_Integration_Theme_Settings_Breadcrumbs', 'setup') );
-
-
-		return $this;
 	}
 
-	/**
-	 * Unregister Genesis Sidebars "Primary" & "Secondary"
-	 */
-	public function modifyThemeWidgets() {
-		unregister_sidebar( 'sidebar' );
-		unregister_sidebar( 'sidebar-alt' );
-	}
 
 	/**
 	 * @return string
