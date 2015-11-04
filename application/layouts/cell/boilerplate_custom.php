@@ -44,6 +44,7 @@ class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell extends WPDDL_Cell_
  * Cell factory.
  *
  * @todo Rename this class to "WPDDL_Integration_Layouts_Cell_{$cell_name}_Cell_Factory".
+ * @todo Take a look at WPDDL_Cell_Abstract_Cell_Factory and consider providing more complete information about the cell.
  */
 class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
 	protected $name = 'Custom boilerplate cell'; // @todo Provide cell display name

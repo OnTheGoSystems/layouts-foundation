@@ -1,6 +1,12 @@
 <?php
 
 
+/**
+ * Singleton for setting up the integration.
+ *
+ * Note that it doesn't have to have unique name. Because of autoloading, it will be loaded only once (when this
+ * integration plugin is operational).
+ */
 class WPDDL_Integration_Setup {
 
 	private static $instance;
@@ -173,9 +179,10 @@ class WPDDL_Integration_Setup {
 	 */
 	private function addLayoutCells() {
 
-		// Widget Header Right
-		/*$widget_header_right = new Layouts_Integration_Layouts_Cell_Widget_Header_Right();
-		$widget_header_right->setup();*/
+		// Custom boilerplate cell
+		// @todo Remove this one completely after you are done with it.
+		$boilerplate_cell = new WPDDL_Integration_Layouts_Cell_Boilerplate_Custom();
+		$boilerplate_cell->setup();
 
 	}
 
@@ -188,8 +195,7 @@ class WPDDL_Integration_Setup {
 	 * @todo     implement the WPDDL_Integration_Theme_Settings_Interface interface.
 	 */
 	public function modifyThemeSettings() {
-
-
+		// ...
 	}
 
 

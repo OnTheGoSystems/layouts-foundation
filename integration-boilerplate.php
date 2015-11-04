@@ -31,7 +31,7 @@ final class WPDDL_Integration_Boilerplate {
 	}
 
 
-	private function initialize() {
+	public function initialize() {
 		if( ! $this->is_theme_active() ) {
 			return;
 		}
@@ -66,7 +66,7 @@ final class WPDDL_Integration_Boilerplate {
 	 * @todo Replace this by your custom logic.
 	 */
 	private function is_theme_active() {
-		return function_exists( 'genesis' );
+		return function_exists( 'twentyfifteen_setup' );
 	}
 
 
@@ -77,7 +77,7 @@ final class WPDDL_Integration_Boilerplate {
 	 * @todo Replace this by relevant value.
 	 */
 	private function get_theme_name() {
-		return 'Genesis';
+		return 'Twenty Fifteen';
 	}
 }
 
