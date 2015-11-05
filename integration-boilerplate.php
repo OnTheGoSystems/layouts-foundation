@@ -5,91 +5,24 @@ Plugin URI: http://wp-types.com/
 Description: Layouts Integration for <insert theme name>
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
-Version: 0.0.1
+Version: 0.1
 */
 
 // @todo Setup the plugin header.
 // @todo Rename this file to match the plugin slug.
 
+
+// @todo Update function name
+add_action( 'wpddl_theme_integration_support_ready', 'wpddl_integration_boilerplate_init', 10, 2 );
+
+
 /**
- * @todo This class name has to be unique. Use pattern "WPDDL_Theme_Name_Integration".
+ * We need to continue only after the integration support has been loaded and we check the API version matches.
+ * @todo This function name has to be unique. Use pattern "wpddl_integration_{$theme_name}_init".
  */
-final class WPDDL_Integration_Boilerplate {
-
-	const SUPPORTED_INTEGRATION_API_VERSION = 1;
-
-	private static $instance = null;
-
-	public static function get_instance() {
-		if( null == self::$instance ) {
-			self::$instance = new self;
-		}
-		return self::$instance;
-	}
-
-
-	private function __construct() {
-		add_action( 'wpddl_theme_integration_support_ready', array( $this, 'initialize' ), 10, 2 );
-	}
-
-
-	public function initialize(
-		/** @noinspection PhpUnusedParameterInspection */ $layouts_version = null,
-		$integration_api_version = 0 )
-	{
-		if( self::SUPPORTED_INTEGRATION_API_VERSION != $integration_api_version ) {
-			return;
-		}
-
-		if( ! $this->is_theme_active() ) {
-			return;
-		}
-
-		// Abort if Layouts is not active
-		if( ! defined( 'WPDDL_DEVELOPMENT' ) ) {
-			return;
-		}
-
-		// Abort if another integration is already active
-		if( defined( 'LAYOUTS_INTEGRATION_THEME_NAME' ) ) {
-			return;
-		}
-
-		// Now it's official.
-		define( 'LAYOUTS_INTEGRATION_THEME_NAME', $this->get_theme_name() );
-
-		// Setup the autoloader
-		$autoloader = WPDDL_Theme_Integration_Autoloader::getInstance();
-		$autoloader->addPath( dirname( __FILE__ ) . '/application' );
-
-		// Run the integration setup
-		$integration = WPDDL_Integration_Setup::getInstance();
-		$integration->run();
-	}
-
-
-	/**
-	 * Determine whether the expected theme is active and the integration can begin.
-	 *
-	 * @return bool
-	 * @todo Replace this by your custom logic.
-	 */
-	private function is_theme_active() {
-		return function_exists( 'twentyfifteen_setup' );
-	}
-
-
-	/**
-	 * Name of the theme. It will be used as an unique identifier of the integration plugin.
-	 *
-	 * @return string Theme name
-	 * @todo Replace this by relevant value.
-	 */
-	private function get_theme_name() {
-		return 'Twenty Fifteen';
+function wpddl_integration_boilerplate_init( $layouts_version, $integration_support_version ) {
+	$supported_integration_api_version = 1;
+	if( $supported_integration_api_version == $integration_support_version ) {
+		require_once 'integration-loader.php';
 	}
 }
-
-
-// @todo Update the class name.
-WPDDL_Integration_Boilerplate::get_instance();
