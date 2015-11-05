@@ -187,6 +187,9 @@ class WPDDL_Integration_Setup {
 		$boilerplate_cell = new WPDDL_Integration_Layouts_Cell_Boilerplate_Custom();
 		$boilerplate_cell->setup();
 
+		$sidebar_cell = new WPDDL_Integration_Layouts_Cell_Sidebar();
+		$sidebar_cell->setup();
+
 	}
 
 

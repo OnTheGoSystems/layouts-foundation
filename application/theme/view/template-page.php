@@ -11,7 +11,9 @@
  * @since Twenty Fifteen 1.0
  */
 
-get_header(); /*?>
+include 'header.php';
+//get_header();
+/*?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
@@ -36,4 +38,7 @@ get_header(); /*?>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
 
-<?php */ get_footer();
+<?php */
+
+//get_footer();
+include 'footer.php';
