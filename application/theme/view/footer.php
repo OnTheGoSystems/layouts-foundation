@@ -2,11 +2,9 @@
 /**
  * The template for displaying the footer
  *
- * Contains the closing of the "site-content" div and all content after.
+ * Contains the closing of the "site-content" div.
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * Taken from Twenty Fifteen. The difference is that it doesn't contain the actual footer.
  */
 ?>
 

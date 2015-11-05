@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Singleton for setting up the integration.
  *
@@ -26,7 +25,7 @@ class WPDDL_Integration_Setup {
 
 
 	/**
-	 * Run Integration
+	 * Run Integration.
 	 */
 	public function run() {
 
@@ -38,7 +37,6 @@ class WPDDL_Integration_Setup {
 
 		// add Admin CSS modifications
 		add_action( 'admin_enqueue_scripts', array( $this, 'AdminCSSModifications' ), 2 );
-
 
 		$this->addLayoutsSupport();
 		$this->tellLayoutsAboutTheme();
@@ -117,48 +115,15 @@ class WPDDL_Integration_Setup {
 	 * Layouts Support
 	 *
 	 * @todo Implement theme-specific logic here. For example, you may want to:
-	 *     - replace theme loop by the_ddlayout()
-	 *     - remove headers, footer, sidebars, menus and such
+	 *     - if theme has it's own loop, replace it by the_ddlayout()
+	 *     - remove headers, footer, sidebars, menus and such, if achievable by filters
+	 *     - otherwise you will have to resort to something like redirecting templates (see the template router below)
 	 *     - add $this->clearContent() to some filters to remove unwanted site structure elements
 	 */
 	private function addLayoutsSupport() {
 
 		WPDDL_Integration_Theme_Template_Router::get_instance();
 
-		/*remove_action( 'genesis_loop', 'genesis_do_loop' );
-		add_action( 'genesis_loop', function() { the_ddlayout(); } );
-
-		show_admin_bar( false );
-		// remove genesis header
-		remove_action( 'genesis_header', 'genesis_do_header' );
-		remove_action( 'genesis_header', 'genesis_header_markup_open', 5 );
-		remove_action( 'genesis_header', 'genesis_header_markup_close', 15 );
-
-		// remove genesis footer
-		remove_action( 'genesis_footer', 'genesis_do_footer' );
-		remove_action( 'genesis_footer', 'genesis_footer_markup_open', 5 );
-		remove_action( 'genesis_footer', 'genesis_footer_markup_close', 15 );
-
-		// remove genesis sidebar
-		remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-
-		// remove genesis menujj
-		remove_action( 'genesis_after_header', 'genesis_do_nav' );
-		remove_action( 'genesis_after_header', 'genesis_do_subnav' );
-
-		// remove genesis site structure output
-		add_filter( 'genesis_markup_content-sidebar-wrap_output', array( $this, 'clearContent' ) );
-		add_filter( 'genesis_markup_content_output', array( $this, 'clearContent' ) );
-		add_filter( 'genesis_markup_site-inner_output', array( $this, 'clearContent' ) );
-		//add_filter( 'genesis_markup_site-container_output', array( $this, 'clearContent' ) );
-		//add_filter( 'genesis_markup_sidebar-primary_output', array( $this, 'clearContent' ) );
-
-		// closing elements have no context set by genesis - so they cannot be target exactly
-		// @todo make sure the site structure does not get destroyed and remove the filter later on
-		add_filter( 'genesis_markup__output', array( $this, 'clearContent' ) );
-
-		unregister_sidebar( 'sidebar' );
-		unregister_sidebar( 'sidebar-alt' );*/
 	}
 
 

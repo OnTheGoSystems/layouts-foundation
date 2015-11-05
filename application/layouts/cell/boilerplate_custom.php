@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Example of custom Layouts cell.
+ */
 
 /**
  * Cell abstraction. Defines the cell with Layouts.

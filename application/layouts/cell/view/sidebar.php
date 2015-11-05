@@ -1,3 +1,4 @@
+<!-- Twenty Fifteen native sidebar, taken from it's header.php -->
 <div id="sidebar" class="sidebar">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
