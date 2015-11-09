@@ -56,6 +56,6 @@ class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell_Factory extends WPD
 
 	// @todo Provide an URL to cell image.
 	protected function setCellImageUrl() {
-		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'single-widget.svg';
+		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'generic-one-cell.svg';
 	}
 }

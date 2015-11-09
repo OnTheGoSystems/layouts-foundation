@@ -17,8 +17,9 @@ class WPDDL_Integration_Setup {
 	 * @return WPDDL_Integration_Setup
 	 */
 	public static function getInstance() {
-		if( self::$instance === null )
+		if( self::$instance === null ) {
 			self::$instance = new self;
+		}
 
 		return self::$instance;
 	}

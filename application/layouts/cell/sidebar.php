@@ -8,7 +8,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Sidebar extends WPDDL_Cell_Abstract {
-	protected $id = 'twentyfifteen-sidebar';
+	protected $id = 'boilerplate-sidebar';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Sidebar_Cell_Factory';
 }
@@ -18,7 +18,7 @@ class WPDDL_Integration_Layouts_Cell_Sidebar extends WPDDL_Cell_Abstract {
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Sidebar_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'twentyfifteen-sidebar';
+	protected $id = 'boilerplate-sidebar';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
