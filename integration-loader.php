@@ -11,8 +11,12 @@
  */
 final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstract {
 
+
 	/**
 	 * Theme-specific initialization.
+	 *
+	 * @return bool|WP_Error True when the integration was successful or a WP_Error with a sensible message
+	 *     (which can be displayed to the user directly).
 	 */
 	protected function initialize() {
 
@@ -22,7 +26,9 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 
 		// Run the integration setup
 		$integration = WPDDL_Integration_Setup::getInstance();
-		$integration->run();
+		$result = $integration->run();
+
+		return $result;
 	}
 
 
@@ -42,10 +48,12 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 	 *
 	 * @return string Theme name
 	 * @todo Replace this by relevant value.
+	 * @todo Consider also overloading get_theme_display_name().
 	 */
 	protected function get_theme_name() {
 		return 'Twenty Fifteen';
 	}
+
 }
 
 

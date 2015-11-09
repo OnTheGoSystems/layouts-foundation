@@ -8,9 +8,13 @@
  */
 class WPDDL_Integration_Setup {
 
+
 	private static $instance;
 
+
 	private function __clone() {}
+
+
 	private function __construct() {}
 
 	/**
@@ -27,6 +31,9 @@ class WPDDL_Integration_Setup {
 
 	/**
 	 * Run Integration.
+	 *
+	 * @return bool|WP_Error True when the integration was successful or a WP_Error with a sensible message
+	 *     (which can be displayed to the user directly).
 	 */
 	public function run() {
 
@@ -43,6 +50,9 @@ class WPDDL_Integration_Setup {
 		$this->tellLayoutsAboutTheme();
 		$this->addLayoutCells();
 		$this->modifyThemeSettings();
+
+		return new WP_Error( 42, 'Test error.' );
+		//return true;
 	}
 
 
