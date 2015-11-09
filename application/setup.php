@@ -51,8 +51,7 @@ class WPDDL_Integration_Setup {
 		$this->addLayoutCells();
 		$this->modifyThemeSettings();
 
-		return new WP_Error( 42, 'Test error.' );
-		//return true;
+		return true;
 	}
 
 
