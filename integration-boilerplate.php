@@ -58,7 +58,7 @@ class WPDDL_Boilerplate_Integration_Loader {
 			// We need to manually setup plugin name, since it depends on the main file name.
 			// @todo Update class name.
 			$loader = WPDDL_Integration_Boilerplate::get_instance();
-			$loader->plugin_basename = plugin_basename( __FILE__ );
+			$loader->set_plugin_base_name( plugin_basename( __FILE__ ) );
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate_plugin' ) );
 			add_action( 'admin_notices', array( $this, 'print_api_version_mismatch_message' ) );
