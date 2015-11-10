@@ -43,17 +43,6 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 	}
 
 
-	/**
-	 * Name of the supported theme. It will be used as an unique identifier of the integration plugin.
-	 *
-	 * @return string Theme name
-	 * @todo Replace this by relevant value.
-	 * @todo Consider also overloading get_theme_display_name().
-	 */
-	protected function get_theme_name() {
-		return 'Twenty Fifteen';
-	}
-
 }
 
 
