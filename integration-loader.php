@@ -43,6 +43,17 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 	}
 
 
+	/**
+	 * Supported theme name (as would wp_get_theme() return).
+	 *
+	 * @return string
+	 * @todo Replace this by your theme name.
+	 */
+	protected function get_theme_name() {
+		return 'Boilerplate';
+	}
+
+
 }
 
 
