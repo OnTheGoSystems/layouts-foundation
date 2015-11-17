@@ -167,6 +167,13 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 
 		WPDDL_Integration_Theme_Template_Router::get_instance();
 
+        // tell layouts to show all layouts on post/page edit
+        add_filter( 'ddl_templates_have_layout', array( $this, 'activateLayoutsSelectForPosts' ) );
+        add_filter( 'ddl_no_templates_at_all', array( &$this, 'overrideTemplatesExist') );
+        add_filter( 'ddl_check_layout_template_page_exists', array( &$this, 'overrideTemplatesExistPostType'), 10, 2 );
+        add_filter( 'ddl-theme_has_page_templates', array( &$this, 'overrideTemplatesExistPage'), 10, 1 );
+        add_filter('ddl-determine_main_template', array(&$this, 'override_default_template'), 10, 3);
+
 	}
 
 
@@ -181,6 +188,46 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 			$options_manager->update_options( $option_name, 1 );
 		}
 	}
+
+    public function override_default_template( $default, $template, $post_type ){
+        if( $post_type === 'page' && apply_filters('ddl-template_have_layout', 'page.php') === false ){
+            return 'template-page.php';
+        }
+        return $default;
+    }
+
+
+    /*
+     * Layouts searches for template files (files with string "Template Name") to add created
+     * Layouts to the Layouts Select menu (for example on page edit). As we cannot
+     * change files in the theme we will add support through filter
+     */
+    public function activateLayoutsSelectForPosts( $templates ) {
+        $templates = array(
+            'template-page.php'
+        );
+        return $templates;
+    }
+
+    /**
+     * @bool boolean whether the theme supports Layouts templates
+     */
+
+    public function overrideTemplatesExist( $bool ){
+        return false;
+    }
+
+    /*
+     * $bool boolean
+     * $post_type string
+     */
+    public function overrideTemplatesExistPostType( $bool, $post_type ){
+        return true;
+    }
+
+    public function overrideTemplatesExistPage( $bool ){
+        return true;
+    }
 
 
 	/**
