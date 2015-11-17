@@ -21,6 +21,7 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 		self::$templates = array(
 				'template-page.php' => __( 'Template page', 'ddl-layouts' )
 		);
+		add_filter('ddl-get_cell_categories', array(__CLASS__, 'overrideCellCategoriesOrder'), 99, 1 );
 	}
 
 	private function __construct() {
@@ -266,5 +267,16 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 	public function clearContent() {
 		return '';
 	}
+
+	  public static function overrideCellCategoriesOrder($categories)
+    {
+        if( isset( $categories[LAYOUTS_INTEGRATION_THEME_NAME] ) ){
+            $tmp = $categories[LAYOUTS_INTEGRATION_THEME_NAME];
+            unset($categories[LAYOUTS_INTEGRATION_THEME_NAME]);
+            $categories = WPDD_Utils::array_unshift_assoc( $categories, LAYOUTS_INTEGRATION_THEME_NAME, $tmp );
+        }
+
+        return $categories;
+    }
 
 }
