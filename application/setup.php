@@ -268,12 +268,14 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 		return '';
 	}
 
-	  public static function overrideCellCategoriesOrder($categories)
+	public static function overrideCellCategoriesOrder($categories)
     {
         if( isset( $categories[LAYOUTS_INTEGRATION_THEME_NAME] ) ){
             $tmp = $categories[LAYOUTS_INTEGRATION_THEME_NAME];
             unset($categories[LAYOUTS_INTEGRATION_THEME_NAME]);
-            $categories = WPDD_Utils::array_unshift_assoc( $categories, LAYOUTS_INTEGRATION_THEME_NAME, $tmp );
+            $categories = array_reverse($categories, true);
+            $categories[LAYOUTS_INTEGRATION_THEME_NAME] = $tmp;
+            $categories = array_reverse($categories, true);
         }
 
         return $categories;
