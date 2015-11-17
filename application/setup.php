@@ -6,16 +6,26 @@
  * Note that it doesn't have to have unique name. Because of autoloading, it will be loaded only once (when this
  * integration plugin is operational).
  */
-class WPDDL_Integration_Setup {
+class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interface{
 
 
 	private static $instance;
-
+	protected static $templates; // declare a static array to store templates
 
 	private function __clone() {}
 
+	/**
+	 * @return void
+	 */
+	public static function setup(){
+		self::$templates = array(
+				'template-page.php' => __( 'Template page', 'ddl-layouts' )
+		);
+	}
 
-	private function __construct() {}
+	private function __construct() {
+		self::setup();
+	}
 
 	/**
 	 * @return WPDDL_Integration_Setup
@@ -44,7 +54,7 @@ class WPDDL_Integration_Setup {
 		add_action( 'wp_enqueue_scripts', array( $this, 'CSSModifications' ), 2 );
 
 		// add Admin CSS modifications
-		add_action( 'admin_enqueue_scripts', array( $this, 'AdminCSSModifications' ), 2 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'AdminOverrides' ), 1 );
 
 		$this->addLayoutsSupport();
 		$this->tellLayoutsAboutTheme();
@@ -109,7 +119,7 @@ class WPDDL_Integration_Setup {
 	/**
 	 * Admin CSS Modifications
 	 */
-	public function AdminCSSModifications() {
+	public function AdminOverrides() {
 		wp_register_style(
 			'layouts-theme-integration-backend',
 			plugins_url( '/../public/css/custom-backend.css', __FILE__ ),
@@ -118,6 +128,29 @@ class WPDDL_Integration_Setup {
 		);
 
 		wp_enqueue_style( 'layouts-theme-integration-backend' );
+
+
+		wp_register_script(
+				'layouts-theme-integration-backend',
+				plugins_url( '/../public/js/custom-backend.js', __FILE__ ),
+				array('jquery', 'underscore', 'ddl_post_edit_page'),
+				$this->getSupportedThemeVersion(),
+				false
+		);
+
+		wp_localize_script('layouts-theme-integration-backend', 'Integration2015', array(
+				'templates' => self::$templates
+		));
+
+		global $pagenow, $post;
+
+		if (($pagenow == 'post.php' || $pagenow == 'post-new.php') &&
+				$post->post_type === 'page' &&
+				( is_array(self::$templates) && count(self::$templates) > 0 )
+		) {
+			wp_enqueue_script('layouts-theme-integration-backend');
+		}
+
 	}
 
 
