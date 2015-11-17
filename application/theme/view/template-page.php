@@ -7,8 +7,8 @@
  * Template name: Template page
  */
 
-include 'header.php';
+WPDDL_Integration_Theme_Template_Router::get_header();
 
 the_ddlayout();
 
-include 'footer.php';
+WPDDL_Integration_Theme_Template_Router::get_footer();
