@@ -6,13 +6,13 @@
  * Note that it doesn't have to have unique name. Because of autoloading, it will be loaded only once (when this
  * integration plugin is operational).
  */
-class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interface{
-
+class WPDDL_Integration_Setup {
 
 	private static $instance;
 	protected static $templates; // declare a static array to store templates
 
 	private function __clone() {}
+
 
 	/**
 	 * @return void
@@ -23,6 +23,7 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 		);
 		add_filter('ddl-get_cell_categories', array(__CLASS__, 'overrideCellCategoriesOrder'), 99, 1 );
 	}
+
 
 	private function __construct() {
 		self::setup();
@@ -267,8 +268,7 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
 	 * This function is used to remove all theme settings which are obsolete with the use of Layouts
 	 * i.e. "Default Layout" in "Theme Settings"
 	 *
-	 * @todo You can either use this class for very simple tasks or create classes in application/theme/settings, which
-	 * @todo     implement the WPDDL_Integration_Theme_Settings_Interface interface.
+	 * @todo You can either use this class for very simple tasks or create dedicated classes in application/theme/settings.
 	 */
 	public function modifyThemeSettings() {
 		// ...
