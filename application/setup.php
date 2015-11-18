@@ -174,8 +174,22 @@ class WPDDL_Integration_Setup implements WPDDL_Integration_Theme_Settings_Interf
         add_filter( 'ddl_check_layout_template_page_exists', array( &$this, 'overrideTemplatesExistPostType'), 10, 2 );
         add_filter( 'ddl-theme_has_page_templates', array( &$this, 'overrideTemplatesExistPage'), 10, 1 );
         add_filter('ddl-determine_main_template', array(&$this, 'override_default_template'), 10, 3);
-
+        add_filter('ddl_template_have_layout', array(&$this, 'setTemplateHaveLayout'), 10, 2 );
 	}
+
+	/**
+	* Forces to Layouts to check our template files for compatibility 
+	* @param boolean $bool
+	* @param string $file
+	* @return boolean $bool
+	**/
+	public function setTemplateHaveLayout( $bool, $file ){
+            if( in_array( $file, apply_filters('ddl_templates_have_layout', array() ) ) ){
+                    return true;
+            }
+
+        return $bool;
+    }
 
 
 	/**
