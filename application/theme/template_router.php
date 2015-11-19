@@ -3,12 +3,8 @@
 /**
  * Hooks into the template_include filter and select different page template for content that has an Layout assigned.
  */
+/** @noinspection PhpUndefinedClassInspection */
 final class WPDDL_Integration_Theme_Template_Router extends WPDDL_Integration_Theme_Template_Router_Abstract {
-
-
-	protected function __construct() {
-		parent::__construct();
-	}
 
 
 	/**
