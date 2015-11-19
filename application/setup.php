@@ -5,29 +5,11 @@
  *
  * Note that it doesn't have to have unique name. Because of autoloading, it will be loaded only once (when this
  * integration plugin is operational).
+ *
+ * @todo Take look at the parent class, explore it's code and figure out if anything needs overriding.
  */
-class WPDDL_Integration_Setup {
-
-
-	private static $instance;
-
-
-	private function __clone() {}
-
-
-	private function __construct() {}
-
-	/**
-	 * @return WPDDL_Integration_Setup
-	 */
-	public static function getInstance() {
-		if( self::$instance === null ) {
-			self::$instance = new self;
-		}
-
-		return self::$instance;
-	}
-
+/** @noinspection PhpUndefinedClassInspection */
+class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 	/**
 	 * Run Integration.
@@ -36,22 +18,7 @@ class WPDDL_Integration_Setup {
 	 *     (which can be displayed to the user directly).
 	 */
 	public function run() {
-
-		// add Bootstrap support
-		add_action( 'wp_enqueue_scripts', array( $this, 'addBootstrapSupport' ), 1 );
-
-		// add CSS modifications
-		add_action( 'wp_enqueue_scripts', array( $this, 'CSSModifications' ), 2 );
-
-		// add Admin CSS modifications
-		add_action( 'admin_enqueue_scripts', array( $this, 'AdminCSSModifications' ), 2 );
-
-		$this->addLayoutsSupport();
-		$this->tellLayoutsAboutTheme();
-		$this->addLayoutCells();
-		$this->modifyThemeSettings();
-
-		return true;
+		return parent::run();
 	}
 
 
@@ -59,65 +26,32 @@ class WPDDL_Integration_Setup {
 	 * @todo Set supported theme version here.
 	 * @return string
 	 */
-	private function getSupportedThemeVersion() {
+	protected function get_supported_theme_version() {
 		return '';
 	}
 
 
 	/**
-	 * Bootstrap Support
+	 * Build URL of an resource from path relative to plugin's root directory.
+	 *
+	 * @param string $relative_path Some path relative to the plugin's root directory.
+	 * @return string URL of the given path.
 	 */
-	public function addBootstrapSupport() {
-
-		// @todo prove which parts of bs are needed instead of loading full bs
-		wp_register_style(
-			'bootstrap',
-			plugins_url( '/../public/css/bootstrap.min.css', __FILE__ ),
-			array(),
-			'3.3.5'
-		);
-
-		// @todo probably not needed at all
-		wp_register_script(
-			'bootstrap',
-			plugins_url( '/../public/js/bootstrap.min.js', __FILE__ ),
-			array( 'jquery' ),
-			'3.3.5',
-			true
-		);
-
-		wp_enqueue_style( 'bootstrap' );
-		wp_enqueue_script( 'bootstrap' );
+	protected function get_plugins_url( $relative_path ) {
+		return plugins_url( '/../' . $relative_path , __FILE__ );
 	}
 
 
 	/**
-	 * CSS Modifications
+	 * Get list of templates supported by Layouts with this theme.
+	 *
+	 * @return array Associative array with template file names as keys and theme names as values.
+	 * @todo Update the array of templates according to what the integration plugin offers
 	 */
-	public function CSSModifications() {
-		wp_register_style(
-			'layouts-theme-integration-frontend',
-			plugins_url( '/../public/css/custom-frontend.css', __FILE__ ),
-			array(),
-			$this->getSupportedThemeVersion()
+	protected function get_supported_templates() {
+		return array(
+			'template-page.php' => __( 'Template page', 'ddl-layouts' )
 		);
-
-		wp_enqueue_style( 'layouts-theme-integration-frontend' );
-
-	}
-
-	/**
-	 * Admin CSS Modifications
-	 */
-	public function AdminCSSModifications() {
-		wp_register_style(
-			'layouts-theme-integration-backend',
-			plugins_url( '/../public/css/custom-backend.css', __FILE__ ),
-			array(),
-			$this->getSupportedThemeVersion()
-		);
-
-		wp_enqueue_style( 'layouts-theme-integration-backend' );
 	}
 
 
@@ -128,25 +62,15 @@ class WPDDL_Integration_Setup {
 	 *     - if theme has it's own loop, replace it by the_ddlayout()
 	 *     - remove headers, footer, sidebars, menus and such, if achievable by filters
 	 *     - otherwise you will have to resort to something like redirecting templates (see the template router below)
-	 *     - add $this->clearContent() to some filters to remove unwanted site structure elements
+	 *     - add $this->clear_content() to some filters to remove unwanted site structure elements
 	 */
-	private function addLayoutsSupport() {
+	protected function add_layouts_support() {
 
+		parent::add_layouts_support();
+
+		/** @noinspection PhpUndefinedClassInspection */
 		WPDDL_Integration_Theme_Template_Router::get_instance();
 
-	}
-
-
-	/**
-	 * Layouts that the active theme supports Layouts.
-	 */
-	private function tellLayoutsAboutTheme() {
-		$theme = wp_get_theme();
-		$options_manager = new WPDDL_Options_Manager( 'ddl_template_check' );
-		$option_name = 'theme-' . $theme->get('Name');
-		if( ! $options_manager->get_options( $option_name ) ) {
-			$options_manager->update_options( $option_name, 1 );
-		}
 	}
 
 
@@ -155,7 +79,7 @@ class WPDDL_Integration_Setup {
 	 *
 	 * @todo Setup your custom layouts cell here.
 	 */
-	private function addLayoutCells() {
+	protected function add_layouts_cells() {
 
 		// Custom boilerplate cell
 		// @todo Remove this one completely after you are done with it.
@@ -169,22 +93,14 @@ class WPDDL_Integration_Setup {
 
 
 	/**
-	 * This function is used to remove all theme settings which are obsolete with the use of Layouts
+	 * This method can be used to remove all theme settings which are obsolete with the use of Layouts
 	 * i.e. "Default Layout" in "Theme Settings"
 	 *
-	 * @todo You can either use this class for very simple tasks or create classes in application/theme/settings, which
-	 * @todo     implement the WPDDL_Integration_Theme_Settings_Interface interface.
+	 * @todo You can either use this class for very simple tasks or create dedicated classes in application/theme/settings.
 	 */
-	public function modifyThemeSettings() {
+	protected function modify_theme_settings() {
 		// ...
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function clearContent() {
-		return '';
-	}
 
 }

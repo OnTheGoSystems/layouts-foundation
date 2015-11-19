@@ -25,7 +25,8 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 		$autoloader->addPath( dirname( __FILE__ ) . '/application' );
 
 		// Run the integration setup
-		$integration = WPDDL_Integration_Setup::getInstance();
+		/** @noinspection PhpUndefinedClassInspection */
+		$integration = WPDDL_Integration_Setup::get_instance();
 		$result = $integration->run();
 
 		return $result;

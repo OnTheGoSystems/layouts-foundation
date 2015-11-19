@@ -3,25 +3,16 @@
 /**
  * Hooks into the template_include filter and select different page template for content that has an Layout assigned.
  */
-final class WPDDL_Integration_Theme_Template_Router {
+/** @noinspection PhpUndefinedClassInspection */
+final class WPDDL_Integration_Theme_Template_Router extends WPDDL_Integration_Theme_Template_Router_Abstract {
 
 
-	private static $instance = null;
-
-
-	public static function get_instance() {
-		if( null == self::$instance ) {
-			self::$instance = new self;
-		}
-		return self::$instance;
-	}
-
-
-	private function __construct() {
-		add_filter( 'template_include', array( $this, 'template_include' ) );
-	}
-
-
+	/**
+	 * Hooked into the template_include filter.
+	 *
+	 * @param string $template Default template path.
+	 * @return string Template path.
+	 */
 	public function template_include( $template ) {
 
 		if( is_ddlayout_assigned() ) {
@@ -45,4 +36,14 @@ final class WPDDL_Integration_Theme_Template_Router {
 
 		return $template;
 	}
+
+
+	/**
+	 * @return string Absolute path (without the final slash) to the directory where custom page template files are located.
+	 * @todo Change this if needed.
+	 */
+	protected function get_template_path() {
+		return dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'view';
+	}
+
 }
