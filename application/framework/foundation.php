@@ -5,7 +5,6 @@ if( !defined('WPDDL_FOUNDATION_ASSETS') ) define('WPDDL_FOUNDATION_ASSETS', WPDD
 class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration_Abstract{
 
     protected function __construct(){
-
         add_action( 'ddl-integration_override_before_init', array(&$this, 'setUp') );
         add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
         parent::__construct();
