@@ -7,9 +7,9 @@
  *
  * See WPDDL_Theme_Integration_Abstract for details.
  *
- * @todo This class name has to be unique. Use pattern "WPDDL_Theme_Name_Integration".
+ *
  */
-final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstract {
+final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstract {
 
 
 	/**
@@ -37,10 +37,10 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 	 * Determine whether the expected theme is active and the integration can begin.
 	 *
 	 * @return bool
-	 * @todo Replace this by your custom logic.
+	 *
 	 */
 	protected function is_theme_active() {
-		return function_exists( 'twentyfifteen_setup' );
+		return function_exists( 'cornerstone_theme_support' );
 	}
 
 
@@ -48,15 +48,13 @@ final class WPDDL_Integration_Boilerplate extends WPDDL_Theme_Integration_Abstra
 	 * Supported theme name (as would wp_get_theme() return).
 	 *
 	 * @return string
-	 * @todo Replace this by your theme name.
+	 *
 	 */
 	protected function get_theme_name() {
-		return 'Boilerplate';
+		return 'cornerstonechildtheme';
 	}
 
 
 }
-
-
 // @todo Update the class name.
-WPDDL_Integration_Boilerplate::get_instance();
+WPDDL_Integration_Cornerstone::get_instance();

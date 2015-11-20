@@ -11,7 +11,13 @@
 /** @noinspection PhpUndefinedClassInspection */
 class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
-	/**
+
+	protected function __construct(){
+         //   add_action('init', array('WPDDL_Integration_Foundation', 'get_instance') );
+        WPDDL_Integration_Foundation::get_instance();
+    }
+
+    /**
 	 * Run Integration.
 	 *
 	 * @return bool|WP_Error True when the integration was successful or a WP_Error with a sensible message
@@ -101,6 +107,4 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	protected function modify_theme_settings() {
 		// ...
 	}
-
-
 }

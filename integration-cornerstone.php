@@ -1,15 +1,12 @@
 <?php
 /*
-Plugin Name: Layouts Integration boilerplate plugin
+Plugin Name: Layouts Cornerstone Integration
 Plugin URI: http://wp-types.com/
-Description: Layouts Integration for @todo INSERT THEME NAME
+Description: Layouts Integration for Cornerstone
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
 Version: 0.1
 */
-
-// @todo Setup the plugin header.
-// @todo Rename this file to match the plugin slug.
 
 
 /**
@@ -17,9 +14,8 @@ Version: 0.1
  *
  * Checks for Layouts compatibility and ensures the integration begins at the right time.
  *
- * @todo Rename this class to "WPDDL_{$plugin_name}_Loader"
  */
-class WPDDL_Boilerplate_Integration_Loader {
+class WPDDL_Cornerstone_Integration_Loader {
 
 	private static $instance = null;
 
@@ -57,7 +53,7 @@ class WPDDL_Boilerplate_Integration_Loader {
 
 			// We need to manually setup plugin name, since it depends on the main file name.
 			// @todo Update class name.
-			$loader = WPDDL_Integration_Boilerplate::get_instance();
+			$loader = WPDDL_Integration_Cornerstone::get_instance();
 			$loader->set_plugin_base_name( plugin_basename( __FILE__ ) );
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate_plugin' ) );
@@ -98,4 +94,4 @@ class WPDDL_Boilerplate_Integration_Loader {
 }
 
 // @todo Update class name.
-WPDDL_Boilerplate_Integration_Loader::getInstance();
+WPDDL_Cornerstone_Integration_Loader::getInstance();
