@@ -14,6 +14,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 	protected function __construct(){
          add_action('init', array('WPDDL_Integration_Framework_Foundation', 'get_instance') );
+
     }
 
     /**
