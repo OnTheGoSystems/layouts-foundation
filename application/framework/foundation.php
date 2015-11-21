@@ -10,10 +10,6 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
     }
 
-    public function setUp(){
-        $this->setUpFrameWork( 'foundation', 'Foundation by ZURB' );
-    }
-
     public function getColumnPrefix(){
         return array('small-', 'medium-', 'large-');
     }

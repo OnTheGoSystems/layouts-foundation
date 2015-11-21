@@ -26,6 +26,13 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 		return parent::run();
 	}
 
+	public function add_bootstrap_support(){
+        return null;
+    }
+
+    public function frontend_enqueue(){
+            parent::frontend_enqueue();
+    }
 
 	/**
 	 * @todo Set supported theme version here.
