@@ -8,6 +8,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         parent::__construct();
         do_action('ddl-integration_override_before_init', 'foundation', 'Foundation by ZURB');
         add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
+        add_action( 'ddl-init_integration_override', array(&$this, 'addCarouselOverrides') );
         add_action( 'wp_head', array(&$this, 'do_header') );
     }
 
@@ -37,6 +38,9 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         add_filter( 'ddl-carousel_container_class', array(&$this, 'carousel_container_class') );
         add_filter('ddl-carousel_caption_class_attribute', array(&$this, 'carousel_caption_class_attribute'));
         add_filter('ddl-get_carousel_indicators', array(&$this, 'get_carousel_indicators'));
+        add_filter( 'ddl-carousel_control_left', array(&$this, 'get_bs_thumbnail_gui') );
+        add_filter( 'ddl-carousel_control_right', array(&$this, 'get_bs_thumbnail_gui') );
+        add_filter( 'ddl-get_autoplay_script', array(&$this, 'orbit_js_overrides'), 10, 2 );
     }
 
     public function carousel_element_tag(){
@@ -47,8 +51,19 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         return 'li';
     }
 
-    public function carousel_element_data_attribute(){
-        return 'data-orbit';
+    public function carousel_element_data_attribute()
+    {
+        $data = 'data-orbit ';
+        $data .= 'data-options="timer:' . get_ddl_field('autoplay') . ';
+                  animation:slide;
+                  slide_number: false;
+                  pause_on_hover:' . get_ddl_field('pause') . ';
+                  timer_speed:' . get_ddl_field('interval') . '
+                  animation_speed:500;
+                  navigation_arrows:true;
+                  bullets:false;"';
+
+        return $data;
     }
 
     public function carousel_container_class(){
@@ -94,5 +109,9 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $uri; ?>favicon.ico">
         <?php
         echo ob_get_clean();
+    }
+
+    public function orbit_js_overrides(){
+        return '';
     }
 }
