@@ -23,6 +23,8 @@ final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstra
 		// Setup the autoloader
 		$autoloader = WPDDL_Theme_Integration_Autoloader::getInstance();
 		$autoloader->addPath( dirname( __FILE__ ) . '/application' );
+        $autoloader->addPath( dirname( __FILE__ ) . '/library/layouts/integration' );
+        $autoloader->addPath( dirname( __FILE__ ) . '/library' );
 
 		// Run the integration setup
 		/** @noinspection PhpUndefinedClassInspection */

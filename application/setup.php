@@ -14,7 +14,6 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 	protected function __construct(){
          add_action('init', array('WPDDL_Integration_Framework_Foundation', 'get_instance') );
-
     }
 
     /**
@@ -24,6 +23,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 *     (which can be displayed to the user directly).
 	 */
 	public function run() {
+        $this->addLayoutRowTypes();
 		return parent::run();
 	}
 
@@ -93,7 +93,6 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @todo Setup your custom layouts cell here.
 	 */
 	protected function add_layouts_cells() {
-
 		// Custom boilerplate cell
 		// @todo Remove this one completely after you are done with it.
 		$boilerplate_cell = new WPDDL_Integration_Layouts_Cell_Boilerplate_Custom();
@@ -101,8 +100,13 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 		$sidebar_cell = new WPDDL_Integration_Layouts_Cell_Sidebar();
 		$sidebar_cell->setup();
-
 	}
+
+    private function addLayoutRowTypes() {
+        // Site Header
+        $cornerstone_header = new WPDDL_Integration_Layouts_Row_Cornerstone_header();
+        $cornerstone_header->setup();
+    }
 
 
 	/**
