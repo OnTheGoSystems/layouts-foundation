@@ -31,7 +31,7 @@ abstract class WPDDL_Layouts_Integration_Row_Type_Preset_Fullwidth_Background
 				: '';
 
 			ob_start();
-			echo '<' . $args['tag'] . $el_id . ' class="' . $el_css . '">';
+			echo '<' . $args['tag'] . $el_id . ' class="' . $el_css . '" '.$this->renderDataAttributes().'>';
 			echo '<div class="' . $args['container_class'] . '">';
 			echo '<div class="' . $args['row_class'] . $args['type'] . '">';
 

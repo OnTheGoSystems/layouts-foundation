@@ -32,7 +32,7 @@ abstract class WPDDL_Layouts_Integration_Row_Type_Preset_Normal
 
 			ob_start();
 				echo '<div class="' . $args['container_class'] . '">';
-				echo '<' . $args['tag'] . $el_id . ' class="' . $el_css . '">';
+				echo '<' . $args['tag'] . $el_id . ' class="' . $el_css . '" '.$this->renderDataAttributes().'>';
 
 			$markup = ob_get_clean();
 		}

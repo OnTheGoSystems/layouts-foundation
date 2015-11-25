@@ -7,8 +7,18 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_header extends WPDDL_Layouts_Int
         $this->name = __('Cornerstone Header', 'ddl-layouts');
         $this->desc = sprintf( __('%sCornerstone%s site header row', 'ddl-layouts'), '<b>', '</b>' );
 
-        $this->addCssClass( 'site-header' );
+        $this->addCssClass( 'top-bar' );
+        $this->addDataAttributes( 'options', 'mobile_show_parent_link: true' );
+        $this->addDataAttributes( 'topbar', '' );
 
         parent::setup();
+    }
+
+    public function htmlClose( $output, $mode, $tag ) {
+        if( $mode = $this->id ) {
+            $output .= '<section class="top-bar-section"></section>';
+            $output .= '</' . $tag . '></div>';
+        }
+        return $output;
     }
 }

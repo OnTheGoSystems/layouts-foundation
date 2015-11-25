@@ -7,6 +7,7 @@ abstract class WPDDL_Layouts_Integration_Row_Type_Abstract {
 	protected $desc;
 	protected $image;
 	private $css_classes = array();
+	private $data_attr = array();
 
 	protected function setup() {
 		add_filter( 'ddl-get_rows_modes_gui_list',
@@ -72,4 +73,22 @@ abstract class WPDDL_Layouts_Integration_Row_Type_Abstract {
 		return $this;
 	}
 
+	protected function addDataAttributes( $key, $data ) {
+		$this->data_attr[$key] = $data;
+		return $this;
+	}
+
+    protected function getDataAttributes(){
+        return $this->data_attr;
+    }
+
+    protected function renderDataAttributes(){
+        $data_string = '';
+
+        foreach( $this->getDataAttributes() as $data => $value ){
+            $data_string .= sprintf(' data-%s="%s" ', $data, $value);
+        }
+
+        return $data_string;
+    }
 }
