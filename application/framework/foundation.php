@@ -41,6 +41,18 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         add_filter( 'ddl-carousel_control_left', array(&$this, 'get_bs_thumbnail_gui') );
         add_filter( 'ddl-carousel_control_right', array(&$this, 'get_bs_thumbnail_gui') );
         add_filter( 'ddl-get_autoplay_script', array(&$this, 'orbit_js_overrides'), 10, 2 );
+        add_action( 'ddl-slider_cell_additional_options', array(&$this, 'add_slider_controls') );
+    }
+
+
+    public function add_slider_controls(){
+        ob_start();?>
+        <label class="checkbox" for="<?php the_ddl_name_attr('bullets'); ?>">
+            <input type="checkbox" name="<?php the_ddl_name_attr('bullets'); ?>" id="<?php the_ddl_name_attr('bullets'); ?>" value="bullets">
+            <?php _e( 'Bullets', 'ddl-layouts' ) ?>
+        </label>
+        <?php
+        echo ob_get_clean();
     }
 
     public function carousel_element_tag(){
@@ -61,7 +73,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
                   timer_speed:' . get_ddl_field('interval') . '
                   animation_speed:500;
                   navigation_arrows:true;
-                  bullets:false;"';
+                  bullets:'. get_ddl_field('bullets') === "bullets" ? true : false .';"';
 
         return $data;
     }
