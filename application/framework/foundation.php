@@ -51,6 +51,10 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
             <input type="checkbox" name="<?php the_ddl_name_attr('bullets'); ?>" id="<?php the_ddl_name_attr('bullets'); ?>" value="bullets">
             <?php _e( 'Bullets', 'ddl-layouts' ) ?>
         </label>
+        <label class="checkbox" for="<?php the_ddl_name_attr('slide_number'); ?>">
+            <input type="checkbox" name="<?php the_ddl_name_attr('slide_number'); ?>" id="<?php the_ddl_name_attr('slide_number'); ?>" value="slide_number">
+            <?php _e( 'Slide number', 'ddl-layouts' ) ?>
+        </label>
         <?php
         echo ob_get_clean();
     }
@@ -68,7 +72,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         $data = 'data-orbit ';
         $data .= 'data-options="timer:' . get_ddl_field('autoplay') . ';
                   animation:slide;
-                  slide_number: false;
+                  slide_number: '.get_ddl_field('slide_number').';
                   pause_on_hover:' . get_ddl_field('pause') . ';
                   timer_speed:' . get_ddl_field('interval') . '
                   animation_speed:500;
