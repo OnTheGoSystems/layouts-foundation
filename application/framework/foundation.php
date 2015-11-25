@@ -7,8 +7,8 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     protected function __construct(){
         parent::__construct();
         do_action('ddl-integration_override_before_init', 'foundation', 'Foundation by ZURB');
-        add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
         add_action( 'ddl-init_integration_override', array(&$this, 'addCarouselOverrides') );
+        add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
         add_action( 'wp_head', array(&$this, 'do_header') );
     }
 
@@ -41,7 +41,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         add_filter( 'ddl-carousel_control_left', array(&$this, 'get_bs_thumbnail_gui') );
         add_filter( 'ddl-carousel_control_right', array(&$this, 'get_bs_thumbnail_gui') );
         add_filter( 'ddl-get_autoplay_script', array(&$this, 'orbit_js_overrides'), 10, 2 );
-        add_action( 'ddl-slider_cell_additional_options', array(&$this, 'add_slider_controls') );
+        add_filter( 'ddl-slider_cell_additional_options', array(&$this, 'add_slider_controls') );
     }
 
 
@@ -73,7 +73,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
                   timer_speed:' . get_ddl_field('interval') . '
                   animation_speed:500;
                   navigation_arrows:true;
-                  bullets:'. get_ddl_field('bullets') === "bullets" ? true : false .';"';
+                  bullets:'. get_ddl_field('bullets') .';"';
 
         return $data;
     }
