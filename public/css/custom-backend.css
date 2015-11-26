@@ -1,2 +1,17 @@
 /*///// ROW MODES OVERRIDES ///////*/
 .presets-list li{width:25%!important;}
+/*///// ICONS /////////////////////*/
+
+.ddl-tree-category-items a[data-cell-type^='cornerstone-'] {
+    margin-top: 5px;
+}
+.ddl-tree-category-items a[data-cell-type^='cornerstone-'] > .ddl-icon:before {
+    content: '';
+    background-image: url('../img/cell-icon.png');
+    background-size: contain;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    left: 0;
+    top: -5px;
+}

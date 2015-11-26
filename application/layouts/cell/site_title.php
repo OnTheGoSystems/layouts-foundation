@@ -8,7 +8,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Site_title extends WPDDL_Cell_Abstract {
-	protected $id = 'site-title';
+	protected $id = 'cornerstone-sitetitle';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory';
 }
@@ -18,7 +18,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title extends WPDDL_Cell_Abstract {
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Site_title_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'site-title';
+	protected $id = 'cornerstone-sitetitle';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
