@@ -28,6 +28,12 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell extends WPDDL_Cell_Abstract
 	protected function setViewFile() {
 		return dirname( __FILE__ ) . '/view/site_title.php';
 	}
+
+	public function __construct($name, $width, $css_class_name, $content, $css_id, $tag)
+	{
+		$css_class_name .= ' site-title-cell';
+		parent::__construct($name, $width, $css_class_name, $content, $css_id, $tag);
+	}
 }
 
 
