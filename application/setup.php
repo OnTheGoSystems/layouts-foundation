@@ -87,10 +87,29 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	}
 
     protected function layouts_menu_cells_overrides(){
-        add_filter('ddl-wrap_menu_start', array(&$this, 'clear_content'), 10, 3 );
-        add_filter('ddl-wrap_menu_end', array(&$this, 'clear_content'), 10, 3 );
+        add_filter('ddl-menu_has_container', array(&$this, 'return_false'), 99, 1 );
+        add_filter('ddl-wrap_menu_start', array(&$this, 'wrap_menu_start'), 10, 3 );
+        add_filter('ddl-wrap_menu_end', array(&$this, 'wrap_menu_end'), 10, 3 );
         add_filter('ddl-menu_toggle_controls', array(&$this, 'clear_content'), 10, 3 );
         add_filter( 'ddl-get_menu_walker', array(&$this, 'get_menu_walker'), 10, 2 );
+    }
+
+    public function wrap_menu_start( ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' ){
+            return '<section class="top-bar-section">';
+        }
+        return '';
+    }
+
+    public function wrap_menu_end(){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' ){
+            return '</section>';
+        }
+        return '';
+    }
+
+    public function return_false( $bool ){
+        return false;
     }
 
 	/**
@@ -127,7 +146,13 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     public function get_menu_walker( $walker, $style ){
         if ( class_exists( 'cornerstone_walker' ) ){
-            return new cornerstone_walker();
+            $walker = new cornerstone_walker(
+                array(
+                    'in_top_bar' => get_ddl_field('menu_dir') === 'nav-horizontal',
+                    'item_type' => 'li'
+                )
+            );
+            return $walker;
         }
         return null;
     }

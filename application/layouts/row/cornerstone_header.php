@@ -15,10 +15,10 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_header extends WPDDL_Layouts_Int
     }
 
     public function htmlClose( $output, $mode, $tag ) {
-        if( $mode = $this->id ) {
-            $output .= '<section class="top-bar-section"></section>';
-            $output .= '</' . $tag . '></div>';
-        }
-        return $output;
+        return parent::htmlClose( $output, $mode, $tag );
+    }
+
+    public function htmlOpen( $markup, $args ){
+        return parent::htmlOpen( $markup, $args );
     }
 }
