@@ -87,29 +87,57 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	}
 
     protected function layouts_menu_cells_overrides(){
-        add_filter('ddl-menu_has_container', array(&$this, 'return_false'), 99, 1 );
+        add_filter('ddl-menu_has_container', array(&$this, 'return_false'), 99, 2 );
         add_filter('ddl-wrap_menu_start', array(&$this, 'wrap_menu_start'), 10, 3 );
         add_filter('ddl-wrap_menu_end', array(&$this, 'wrap_menu_end'), 10, 3 );
         add_filter('ddl-menu_toggle_controls', array(&$this, 'clear_content'), 10, 3 );
         add_filter( 'ddl-get_menu_walker', array(&$this, 'get_menu_walker'), 10, 2 );
+        add_action( 'ddl-menu_additional_fields', array(&$this, 'menu_additional_fields') );
+        add_filter( 'ddl-get_menu_class', array(&$this, 'add_menu_class_if'), 10, 2 );
+        add_filter( 'ddl-menu-walker-args', array(&$this, 'add_menu_args'), 10 );
     }
 
     public function wrap_menu_start( ){
-        if( get_ddl_field('menu_dir') === 'nav-horizontal' ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar') ){
             return '<section class="top-bar-section">';
         }
         return '';
     }
 
     public function wrap_menu_end(){
-        if( get_ddl_field('menu_dir') === 'nav-horizontal' ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar') ){
             return '</section>';
         }
         return '';
     }
 
-    public function return_false( $bool ){
-        return false;
+    public function add_menu_class_if( $class, $menu ){
+        $align = get_ddl_field('menu_align');
+
+        if( is_null( $align  ) === false ){
+            $class .= ' '.$align;
+        }
+
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' && !get_ddl_field('topbar') ){
+            $class = ' inline-list';
+        }
+
+        return $class;
+    }
+
+    public function add_menu_args( $args ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' && !get_ddl_field('topbar') ){
+            $args['flying_class'] = 'no';
+        }
+        return $args;
+    }
+
+    public function return_false( $bool, $menu ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' ){
+            return false;
+        } else {
+            return true;
+        }
     }
 
 	/**
@@ -145,15 +173,31 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	}
 
     public function get_menu_walker( $walker, $style ){
-        if ( class_exists( 'cornerstone_walker' ) ){
-            $walker = new cornerstone_walker(
+        $is_top = get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar');
+        if ( class_exists( 'WPDDL_Theme_Cornerstone_Menu_Walker' ) ){
+            $walker = new WPDDL_Theme_Cornerstone_Menu_Walker(
                 array(
-                    'in_top_bar' => get_ddl_field('menu_dir') === 'nav-horizontal',
+                    'in_top_bar' => $is_top,
                     'item_type' => 'li'
                 )
             );
             return $walker;
         }
         return null;
+    }
+
+    public function menu_additional_fields(){
+        ob_start();?>
+        <p>
+            <label for="<?php the_ddl_name_attr('topbar'); ?>" class="ddl-manual-width-190"><?php _e('Foundation top menu', 'ddl-layouts'); ?></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="<?php the_ddl_name_attr('topbar'); ?>" value="1" checked />
+        </p>
+        <p>
+            <label for="<?php the_ddl_name_attr('menu_align'); ?>" class="ddl-manual-width-190"><?php _e('Alignment', 'ddl-layouts'); ?></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php the_ddl_name_attr('menu_align'); ?>" value="left" checked /><?php _e('Align left', 'ddl-layouts');?> &nbsp;
+            <input type="radio" name="<?php the_ddl_name_attr('menu_align'); ?>" value="right" /><?php _e('Align right', 'ddl-layouts');?>
+        </p>
+        <?php
+        echo ob_get_clean();
     }
 }
