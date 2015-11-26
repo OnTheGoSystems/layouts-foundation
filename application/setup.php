@@ -80,11 +80,18 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	protected function add_layouts_support() {
 
 		parent::add_layouts_support();
+        $this->layouts_menu_cells_overrides();
 		/** @noinspection PhpUndefinedClassInspection */
 		WPDDL_Integration_Theme_Template_Router::get_instance();
 
 	}
 
+    protected function layouts_menu_cells_overrides(){
+        add_filter('ddl-wrap_menu_start', array(&$this, 'clear_content'), 10, 3 );
+        add_filter('ddl-wrap_menu_end', array(&$this, 'clear_content'), 10, 3 );
+        add_filter('ddl-menu_toggle_controls', array(&$this, 'clear_content'), 10, 3 );
+        add_filter( 'ddl-get_menu_walker', array(&$this, 'get_menu_walker'), 10, 2 );
+    }
 
 	/**
 	 * Add custom theme elements to Layouts.
@@ -117,4 +124,11 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	protected function modify_theme_settings() {
 		// ...
 	}
+
+    public function get_menu_walker( $walker, $style ){
+        if ( class_exists( 'cornerstone_walker' ) ){
+            return new cornerstone_walker();
+        }
+        return null;
+    }
 }
