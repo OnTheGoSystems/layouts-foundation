@@ -40,7 +40,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @return string
 	 */
 	protected function get_supported_theme_version() {
-		return '';
+		return '3.5.3';
 	}
 
 
@@ -80,7 +80,6 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	protected function add_layouts_support() {
 
 		parent::add_layouts_support();
-
 		/** @noinspection PhpUndefinedClassInspection */
 		WPDDL_Integration_Theme_Template_Router::get_instance();
 
