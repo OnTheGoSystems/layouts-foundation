@@ -41,7 +41,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell extends WPDDL_Cell_Abstract
  * Cell factory.
  */
 class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Site title';
+	protected $name = 'Cornerstone site title';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Site_title_Cell';
 

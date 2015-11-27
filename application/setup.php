@@ -148,8 +148,8 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	protected function add_layouts_cells() {
 		// Custom boilerplate cell
 		// @todo Remove this one completely after you are done with it.
-		$boilerplate_cell = new WPDDL_Integration_Layouts_Cell_Boilerplate_Custom();
-		$boilerplate_cell->setup();
+		$orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
+        $orbit_slider->setup();
 
 		$sidebar_cell = new WPDDL_Integration_Layouts_Cell_Site_title();
 		$sidebar_cell->setup();

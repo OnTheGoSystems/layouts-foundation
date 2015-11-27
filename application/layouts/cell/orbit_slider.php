@@ -14,11 +14,11 @@
  *
  * @todo You need to choose an unique cell ID and set it properly in all three classes below.
  */
-class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom extends WPDDL_Cell_Abstract {
-	protected $id = 'boilerplate-custom'; // @todo update cell ID
+class WPDDL_Integration_Layouts_Cell_Orbit_Slider extends WPDDL_Cell_Abstract {
+	protected $id = 'cornerstone-orbitslider'; // @todo update cell ID
 
 	// @todo Update to the factory class name (the last one)
-	protected $factory = 'WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell_Factory';
+	protected $factory = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory';
 }
 
 
@@ -27,8 +27,8 @@ class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom extends WPDDL_Cell_Abstr
  *
  * @todo Rename this class to "WPDDL_Integration_Layouts_Cell_{$cell_name}_Cell".
  */
-class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'boilerplate-custom'; // @todo Update cell ID.
+class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell extends WPDDL_Cell_Abstract_Cell {
+	protected $id = 'cornerstone-orbitslider'; // @todo Update cell ID.
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
@@ -37,7 +37,7 @@ class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell extends WPDDL_Cell_
 	 * @todo Provide your own view and update the path.
 	 */
 	protected function setViewFile() {
-		return dirname( __FILE__ ) . '/view/boilerplate-custom.php';
+		return dirname( __FILE__ ) . '/view/cornerstone-orbitslider.php';
 	}
 }
 
@@ -48,14 +48,14 @@ class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell extends WPDDL_Cell_
  * @todo Rename this class to "WPDDL_Integration_Layouts_Cell_{$cell_name}_Cell_Factory".
  * @todo Take a look at WPDDL_Cell_Abstract_Cell_Factory and consider providing more complete information about the cell.
  */
-class WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Custom boilerplate cell'; // @todo Provide cell display name
+class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
+	protected $name = 'Cornerstone Orbit slider cell'; // @todo Provide cell display name
 
 	// @todo Update to the cell class name (the second one in this file)
-	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Boilerplate_Custom_Cell';
+	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell';
 
 	// @todo Provide an URL to cell image.
 	protected function setCellImageUrl() {
-		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'generic-one-cell.svg';
+		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'layouts-slider-cell.svg';
 	}
 }
