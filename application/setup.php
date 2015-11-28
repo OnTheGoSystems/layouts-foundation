@@ -119,20 +119,44 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         add_action( 'ddl-menu_additional_fields', array(&$this, 'menu_additional_fields') );
         add_filter( 'ddl-get_menu_class', array(&$this, 'add_menu_class_if'), 10, 2 );
         add_filter( 'ddl-menu-walker-args', array(&$this, 'add_menu_args'), 10 );
+        add_filter( 'ddl-get_cell_element_classes', array(&$this, 'add_topbar_class'), 999, 3 );
+        add_filter( 'ddl-additional_cells_tag_attributes_render', array(&$this, 'add_menu_style'), 999, 3 );
     }
 
-    public function wrap_menu_start( ){
-        if( get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar') ){
-            return '<section class="top-bar-section">';
+    public function add_topbar_class( $classes, $renderer, $cell ){
+        if( apply_filters('ddl-is_cell_and_of_type', $cell, 'menu-cell') &&
+            $cell->get_content_field_value('menu_dir') === 'nav-horizontal' &&
+            $cell->get_content_field_value('topbar')
+         ){
+            $classes .= ' top-bar-section';
         }
-        return '';
+        return $classes;
     }
 
-    public function wrap_menu_end(){
-        if( get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar') ){
-            return '</section>';
+    public function add_menu_style( $props, $renderer, $cell ){
+        if( apply_filters('ddl-is_cell_and_of_type', $cell, 'menu-cell') &&
+            $cell->get_content_field_value('menu_dir') === 'nav-horizontal' &&
+            $cell->get_content_field_value('topbar') &&
+            $cell->get_content_field_value('menu_align') == 'left'
+
+        ){
+            $props .= ' style="float:left!important;" ';
         }
-        return '';
+        return $props;
+    }
+
+    public function wrap_menu_start( $tag, $menu_dir, $object ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar') ){
+            return '';
+        }
+        return $tag;
+    }
+
+    public function wrap_menu_end( $tag, $menu_dir, $object ){
+        if( get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar') ){
+            return '';
+        }
+        return $tag;
     }
 
     public function add_menu_class_if( $class, $menu ){
