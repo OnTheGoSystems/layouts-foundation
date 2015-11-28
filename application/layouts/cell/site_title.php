@@ -48,4 +48,19 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_
 	protected function setCellImageUrl() {
 		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'header-cell.svg';
 	}
+
+	public function get_editor_cell_template(){
+		ob_start();
+		?>
+		<div class="cell-content">
+			<p class="cell-name"><?php echo $this->name; ?></p>
+			<div class="cell-preview">
+				<div class="ddl-slider-preview ddl-orbit-slider-preview">
+					<?php bloginfo('name');?>
+				</div>
+			</div>
+		</div>
+		<?php
+		return ob_get_clean();
+	}
 }
