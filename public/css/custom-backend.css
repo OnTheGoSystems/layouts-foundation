@@ -5,7 +5,18 @@
 .ddl-tree-category-items a[data-cell-type^='cornerstone-'] {
     margin-top: 5px;
 }
-.ddl-tree-category-items a[data-cell-type^='cornerstone-'] > .ddl-icon:before {
+.ddl-orbit-slider-preview-img{overflow: hidden;position:relative;width: auto;height: auto;display:inline-block;}
+.ddl-orbit-slider-preview-img:before{
+    content: '';
+    background-image: url('../img/cell-icon.png');
+    background-size: contain;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    left: 2px;
+    top: 10px;
+}
+.ddl-tree-category-items a[data-cell-type^='cornerstone-'] > .ddl-icon:before{
     content: '';
     background-image: url('../img/cell-icon.png');
     background-size: contain;

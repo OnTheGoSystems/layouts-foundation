@@ -20,11 +20,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider extends WPDDL_Cell_Abstract {
 	// @todo Update to the factory class name (the last one)
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory';
 
-	protected function _dialog_template() {
-		return "child::_dialog_template";
-	}
 }
-
 
 /**
  * Represents the actual cell.
@@ -218,6 +214,23 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                   bullets:'.$content['bullets'].';"';
 
         return $data;
+    }
+
+    public function get_editor_cell_template(){
+        ob_start();
+        ?>
+        <div class="cell-content">
+            <p class="cell-name"><?php echo $this->name; ?></p>
+            <div class="cell-preview">
+                <div class="ddl-slider-preview ddl-orbit-slider-preview">
+                    <span class="ddl-orbit-slider-preview-img">
+                    <img src="<?php echo WPDDL_RES_RELPATH . '/images/cell-icons/slider.svg'; ?>" height="130px">
+                        </span>
+                </div>
+            </div>
+        </div>
+        <?php
+        return ob_get_clean();
     }
 
 }
