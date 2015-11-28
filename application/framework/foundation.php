@@ -34,7 +34,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     public function addCarouselOverrides(){
         add_filter( 'ddl-carousel_element_tag', array(&$this, 'carousel_element_tag') );
         add_filter( 'ddl-carousel_elements_tag', array(&$this, 'carousel_elements_tag') );
-        add_filter( 'ddl-carousel_element_data_attribute', array(&$this, 'carousel_element_data_attribute') );
+        add_filter( 'ddl-carousel_element_data_attribute', array(__CLASS__, 'carousel_element_data_attribute') );
         add_filter( 'ddl-carousel_container_class', array(&$this, 'carousel_container_class') );
         add_filter('ddl-carousel_caption_class_attribute', array(&$this, 'carousel_caption_class_attribute'));
         add_filter('ddl-get_carousel_indicators', array(&$this, 'get_carousel_indicators'));
@@ -67,10 +67,16 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         return 'li';
     }
 
-    public function carousel_element_data_attribute()
+    public static function carousel_element_data_attribute()
     {
         $data = 'data-orbit ';
-        $data .= 'data-options="timer:' . get_ddl_field('autoplay') . ';
+        $data .= self::carousel_element_data_options();
+
+        return $data;
+    }
+
+    public static function carousel_element_data_options(){
+        $data = 'data-options="timer:' . get_ddl_field('autoplay') . ';
                   animation:slide;
                   slide_number: '.get_ddl_field('slide_number').';
                   pause_on_hover:' . get_ddl_field('pause') . ';

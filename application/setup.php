@@ -35,6 +35,30 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
             parent::frontend_enqueue();
     }
 
+    public function admin_enqueue(){
+        parent::admin_enqueue();
+        $this->register_and_enqueue_cells_scripts();
+    }
+
+    private function register_and_enqueue_cells_scripts(){
+        wp_register_script(
+            'ddl-orbit-slider-cell',
+            WPDDL_CORNERSTONE_URI_PUBLIC. DIRECTORY_SEPARATOR . 'js/ddl-orbit-slider-cell.js',
+            array( 'jquery', 'underscore'),
+            $this->get_supported_theme_version(),
+            true
+        );
+
+        global $pagenow, $post;
+
+        // Enqueue only on post edit/new post page
+        if ( ( $pagenow == 'admin.php' && isset($_GET['page']) && $_GET['page'] === 'dd_layouts_edit' )
+
+        ) {
+            wp_enqueue_script('ddl-orbit-slider-cell');
+        }
+    }
+
 	/**
 	 * @todo Set supported theme version here.
 	 * @return string
