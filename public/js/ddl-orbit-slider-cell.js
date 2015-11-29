@@ -23,14 +23,24 @@ DDLayout.OrbitSliderCell = function($){
         $sel =  $('.js-orbit-taxonomy');
         self.set_events();
 
+        $select_terms.select2({
+            'width' : 'resolve',
+            enable : false
+        });
+
         if( dialog.is_new_cell() === false ){
             model = dialog.getCachedElement();
-            console.log( model.content );
             if( model.content && model.content.orbit_taxonomy && model.content.orbit_taxonomy !== "" ) {
                 self.do_ajax( model.content.orbit_taxonomy, true );
             }
         }
 
+    };
+
+    self.init_pointer_event = function(){
+        $('.js-ddl-question-mark').toolsetTooltip({
+            additionalClass:'ddl-tooltip-info'
+        });
     };
 
     self.handle_close = function(){
@@ -40,11 +50,13 @@ DDLayout.OrbitSliderCell = function($){
     };
 
     self.set_events = function(){
+        self.init_pointer_event();
         $sel.on('change', self.handle_taxonomy_change);
     };
 
     self.reset_events = function(){
         $sel.off('change', self.handle_taxonomy_change);
+        $select_terms.empty().select2('destroy');
     };
 
     self.handle_taxonomy_change = function(event){
@@ -81,26 +93,32 @@ DDLayout.OrbitSliderCell = function($){
                     var fragment = document.createDocumentFragment(),
                         selected = '',
                         value = '',
+                        default_text = CornerstoneOrbit.Settings.strings.select_default+' '+$('.js-orbit-taxonomy').find('option:selected').text(),
+                        text = default_text,
                         data = response.Data.message,
                         empty = document.createElement('option');
 
-                        $select_terms.empty();
-
+                    $select_terms.empty();
 
                     _.each(data, function(v,k,l){
                         var option = document.createElement('option');
                         if( self.has_selected( v, is_open ) ){
                             selected = ' selected="selected"';
-                            value = v;
+                            value = k;
+                            text = v;
                         }
                         option.innerHTML = '<option value="'+k+'" '+selected+'>'+v+'</option>';
                         fragment.appendChild( option );
                     });
 
-                    selected = selected === '' ? 'selected="selected"' : '';
-                    empty.innerHTML = '<option value="" '+selected+'>Select '+$('.js-orbit-taxonomy').find('option:selected').text()+'</option>';
 
-                    $select_terms.append( empty, fragment).show().val(value).trigger('change');
+
+                    selected = selected === '' ? 'selected="selected"' : '';
+
+                    empty.innerHTML = '<option value="" '+selected+'>'+default_text+'</option>';
+
+                    $select_terms.append( empty, fragment);
+                    $select_terms.select2('data', {id: value, text: text});
                 }
 
             },

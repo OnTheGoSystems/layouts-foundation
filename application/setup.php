@@ -49,6 +49,15 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
             true
         );
 
+        wp_localize_script('ddl-orbit-slider-cell', 'CornerstoneOrbit', array(
+                'Settings' => array(
+                    'strings' => array(
+                        'select_default' => __('Select', 'ddl-layouts')
+                    )
+                )
+            )
+        );
+
         global $pagenow, $post;
 
         // Enqueue only on post edit/new post page

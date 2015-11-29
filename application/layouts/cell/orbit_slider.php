@@ -5,36 +5,23 @@
 
 /**
  * Cell abstraction. Defines the cell with Layouts.
- *
- * @todo You can, of course, abandon this mechanism and create custom cells entirely by hand:
- * @link https://wp-types.com/documentation/user-guides/creating-custom-cells-unique-functionality/
- *
- * @todo Name of this class should be "WPDDL_Integration_Layouts_Cell_{$cell_name}", where $cell_name corresponds to
- * @todo     the filename (so it is loaded properly by the autoloader).
- *
- * @todo You need to choose an unique cell ID and set it properly in all three classes below.
  */
 class WPDDL_Integration_Layouts_Cell_Orbit_Slider extends WPDDL_Cell_Abstract {
-	protected $id = 'cornerstone-orbitslider'; // @todo update cell ID
+	protected $id = 'cornerstone-orbitslider';
 
-	// @todo Update to the factory class name (the last one)
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory';
-
 }
 
 /**
  * Represents the actual cell.
- *
- * @todo Rename this class to "WPDDL_Integration_Layouts_Cell_{$cell_name}_Cell".
  */
 class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'cornerstone-orbitslider'; // @todo Update cell ID.
+	protected $id = 'cornerstone-orbitslider';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
 	 *
 	 * @return string Path to the cell view.
-	 * @todo Provide your own view and update the path.
 	 */
 	protected function setViewFile() {
 		return dirname( __FILE__ ) . '/view/cornerstone-orbitslider.php';
@@ -44,23 +31,18 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell extends WPDDL_Cell_Abstra
 
 /**
  * Cell factory.
- *
- * @todo Rename this class to "WPDDL_Integration_Layouts_Cell_{$cell_name}_Cell_Factory".
- * @todo Take a look at WPDDL_Cell_Abstract_Cell_Factory and consider providing more complete information about the cell.
  */
 class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone Orbit slider cell'; // @todo Provide cell display name
+	protected $name = 'Cornerstone Orbit slider cell';
     private $orbit = 'orbit';
     protected $has_settings = true;
 
-	// @todo Update to the cell class name (the second one in this file)
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell';
 
     public function __construct(){
             add_action('wp_ajax_ddl_orbit_fetch_terms', array(&$this, 'ddl_orbit_fetch_terms'));
     }
 
-	// @todo Provide an URL to cell image.
 	protected function setCellImageUrl() {
 		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'layouts-slider-cell.svg';
 	}
@@ -93,7 +75,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
             </li>
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li>
-                <label for="<?php the_ddl_name_attr('orbit_taxonomy'); ?>"><?php _e('Select a taxonomy', 'ddl-layouts') ?>:</label>
+                <label for="<?php the_ddl_name_attr('orbit_taxonomy'); ?>"><?php _e('Select a taxonomy', 'ddl-layouts') ?>:<i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'Filter Orbit slides post type by taxonomy selected term. Leave it empty will fetch all.', 'ddl-layouts' ) ?>"></i></label>
                 <select class="orbit-taxonomy js-orbit-taxonomy" name="<?php the_ddl_name_attr('orbit_taxonomy'); ?>">
                    <option value=""><?php _e('Select a taxonomy', 'ddl-layouts');?></option>
                     <?php echo $this->get_cat_select_options();?>
