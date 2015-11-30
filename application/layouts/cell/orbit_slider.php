@@ -36,9 +36,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 	protected $name = 'Cornerstone Orbit slider cell';
     private $orbit = 'orbit';
     protected $allow_multiple = true;
-    protected $description = '';
     protected $has_settings = true;
-    protected $preview_image_url = '';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell';
 
