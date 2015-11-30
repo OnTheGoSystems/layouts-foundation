@@ -246,7 +246,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
     public function menu_additional_fields(){
         ob_start();?>
         <p>
-            <label for="<?php the_ddl_name_attr('topbar'); ?>" class="ddl-manual-width-190"><?php _e('Foundation top menu', 'ddl-layouts'); ?></label>
+            <label for="<?php the_ddl_name_attr('topbar'); ?>" class="ddl-manual-width-190"><?php _e('Cornerstone top menu', 'ddl-layouts'); ?></label>
             &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="<?php the_ddl_name_attr('topbar'); ?>" value="1" checked />
         </p>
         <p>

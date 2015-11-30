@@ -35,12 +35,16 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell extends WPDDL_Cell_Abstra
 class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
 	protected $name = 'Cornerstone Orbit slider cell';
     private $orbit = 'orbit';
-    protected $allow_multiple = false;
+    protected $allow_multiple = true;
+    protected $description = '';
     protected $has_settings = true;
+    protected $preview_image_url = '';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell';
 
     public function __construct(){
+            $this->preview_image_url = DDL_ICONS_PNG_REL_PATH . 'slider_expand-image.png';
+            $this->description = __('Allows to render Cornerstone Orbit post type in a Foundation Orbit slider.', 'ddl-layouts');
             add_action('wp_ajax_ddl_orbit_fetch_terms', array(&$this, 'ddl_orbit_fetch_terms'));
     }
 
