@@ -14,7 +14,7 @@ if( !defined('WPDDL_CORNERSTONE_ABS_FRAMEWORK') ) define('WPDDL_CORNERSTONE_ABS_
 if( !defined('WPDDL_CORNERSTONE_ABS_THEME') ) define('WPDDL_CORNERSTONE_ABS_THEME', dirname( __FILE__ ) . '/application/theme' );
 if( !defined('WPDDL_CORNERSTONE_ABS_TPLS') ) define('WPDDL_CORNERSTONE_ABS_TPLS', dirname( __FILE__ ) . '/application/theme/view' );
 
-if( !defined('WPDDL_CORNERSTONE_URI') ) define('WPDDL_CORNERSTONE_URI', plugins_url() );
+if( !defined('WPDDL_CORNERSTONE_URI') ) define('WPDDL_CORNERSTONE_URI', plugins_url( basename(dirname(__FILE__)), dirname(__FILE__) ) );
 if( !defined('WPDDL_CORNERSTONE_URI_APP') ) define('WPDDL_CORNERSTONE_URI_APP', plugins_url( basename(WPDDL_CORNERSTONE_ABS_APP), WPDDL_CORNERSTONE_ABS_APP ) );
 if( !defined('WPDDL_CORNERSTONE_URI_PUBLIC') ) define('WPDDL_CORNERSTONE_URI_PUBLIC', plugins_url( basename(WPDDL_CORNERSTONE_ABS_PUBLIC), WPDDL_CORNERSTONE_ABS_PUBLIC ) );
 if( !defined('WPDDL_CORNERSTONE_URI_TPLS') ) define('WPDDL_CORNERSTONE_URI_TPLS', plugins_url( basename(WPDDL_CORNERSTONE_ABS_TPLS), WPDDL_CORNERSTONE_ABS_TPLS ) );

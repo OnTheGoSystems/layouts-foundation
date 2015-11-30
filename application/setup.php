@@ -42,6 +42,14 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     private function register_and_enqueue_cells_scripts(){
         wp_register_script(
+            'layouts-cornerstone-custom-js',
+            WPDDL_CORNERSTONE_URI. DIRECTORY_SEPARATOR . $this->get_custom_backend_js_path(),
+            array( 'jquery', 'underscore'),
+            $this->get_supported_theme_version(),
+            true
+        );
+
+        wp_register_script(
             'ddl-orbit-slider-cell',
             WPDDL_CORNERSTONE_URI_PUBLIC. DIRECTORY_SEPARATOR . 'js/ddl-orbit-slider-cell.js',
             array( 'jquery', 'underscore'),
@@ -65,6 +73,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
         ) {
             wp_enqueue_script('ddl-orbit-slider-cell');
+            wp_enqueue_script('layouts-cornerstone-custom-js');
         }
     }
 
@@ -248,6 +257,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         <p>
             <label for="<?php the_ddl_name_attr('topbar'); ?>" class="ddl-manual-width-190"><?php _e('Cornerstone top menu', 'ddl-layouts'); ?></label>
             &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="<?php the_ddl_name_attr('topbar'); ?>" value="1" checked />
+            <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'Allows to render Cornerstone Foundation based top menu bar inside a Cornerstone header row.', 'ddl-layouts' ) ?>"></i></span>
         </p>
         <p>
             <label for="<?php the_ddl_name_attr('menu_align'); ?>" class="ddl-manual-width-190"><?php _e('Alignment', 'ddl-layouts'); ?></label>
