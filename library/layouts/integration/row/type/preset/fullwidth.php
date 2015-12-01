@@ -41,7 +41,7 @@ abstract class WPDDL_Layouts_Integration_Row_Type_Preset_Fullwidth
 	}
 
 	public function htmlClose( $output, $mode, $tag ) {
-		if( $mode = $this->id ) {
+		if( $mode === $this->id ) {
 			$output = '</' . $tag . '></div>';
 		}
 

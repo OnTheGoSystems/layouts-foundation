@@ -9,11 +9,16 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         do_action('ddl-integration_override_before_init', 'foundation', 'Foundation by ZURB');
         add_action( 'ddl-init_integration_override', array(&$this, 'addCarouselOverrides') );
         add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
+        add_filter( 'ddl-get_fluid_type_class_suffix', array( &$this, 'overrideRowSuffix'), 99, 2 );
         add_action( 'wp_head', array(&$this, 'do_header') );
     }
 
     public function do_header(){
         $this->print_favicon();
+    }
+
+    function overrideRowSuffix( $suffix, $mode ){
+        return '';
     }
 
     public function getColumnPrefix(){

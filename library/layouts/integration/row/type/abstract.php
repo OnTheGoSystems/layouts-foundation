@@ -19,31 +19,11 @@ abstract class WPDDL_Layouts_Integration_Row_Type_Abstract {
 		add_filter( 'ddl_render_row_end',
 			array( &$this, 'htmlClose'), 99, 3 );
 
-        add_filter( 'ddl-get_fluid_type_class_suffix',
-	        array( &$this, 'overrideRowSuffix') );
-
-        add_filter( 'ddl_no_templates_at_all',
-	        array( &$this, 'overrideTemplatesExist') );
-
-        add_filter( 'ddl_check_layout_template_page_exists',
-	        array( &$this, 'overrideTemplatesExistPostType'), 10, 2 );
-	}
+	    }
 
 	public function htmlOpen( $markup, $args ) {}
 
 	public function htmlClose( $output, $mode, $tag ) {}
-
-	public function overrideTemplatesExist( $bool ){
-		return false;
-	}
-
-	public function overrideTemplatesExistPostType( $bool, $post_type){
-		return true;
-	}
-
-	function overrideRowSuffix( $suffix ){
-		return '';
-	}
 
 	public function addRowMode( $lists_html ){
 		ob_start();?>

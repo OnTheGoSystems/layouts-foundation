@@ -13,12 +13,4 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_header extends WPDDL_Layouts_Int
 
         parent::setup();
     }
-
-    public function htmlClose( $output, $mode, $tag ) {
-        return parent::htmlClose( $output, $mode, $tag );
-    }
-
-    public function htmlOpen( $markup, $args ){
-        return parent::htmlOpen( $markup, $args );
-    }
 }
