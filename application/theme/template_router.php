@@ -25,9 +25,9 @@ final class WPDDL_Integration_Theme_Template_Router extends WPDDL_Integration_Th
 				$template_file = 'template-archive.php';
 			} else if( is_404() ) {
 				$template_file = 'template-404.php';
-			} else {
+			}*/ else {
 				$template_file = 'template-index.php';
-			} */
+			}
 
 			if( null != $template_file ) {
 				$template = dirname( __FILE__ ) . '/view/' . $template_file;
