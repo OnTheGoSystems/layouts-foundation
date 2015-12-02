@@ -9,9 +9,7 @@
 ?>
 
 
-</div><!-- .site -->
-
 <?php wp_footer(); ?>
-
+<?php do_action( 'cornerstone_before_closing_body' ); ?>
 </body>
 </html>
