@@ -50,7 +50,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_
 	}
 
 	protected function setCellImageUrl() {
-		$this->cell_image_url = DDL_ICONS_SVG_REL_PATH . 'header-cell.svg';
+		$this->cell_image_url = WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/site-title-cell.svg';
 	}
 
 	public function get_editor_cell_template(){
