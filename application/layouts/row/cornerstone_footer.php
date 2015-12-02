@@ -1,5 +1,5 @@
 <?php
-class WPDDL_Integration_Layouts_Row_Cornerstone_header extends WPDDL_Row_Type_Preset_Fullwidth{
+class WPDDL_Integration_Layouts_Row_Cornerstone_header extends WPDDL_Layouts_Integration_Row_Type_Preset_Fullwidth{
     public function setup() {
 
         $this->image =
