@@ -16,17 +16,6 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
          add_action('init', array('WPDDL_Integration_Framework_Foundation', 'get_instance') );
     }
 
-    /**
-	 * Run Integration.
-	 *
-	 * @return bool|WP_Error True when the integration was successful or a WP_Error with a sensible message
-	 *     (which can be displayed to the user directly).
-	 */
-	public function run() {
-        $this->addLayoutRowTypes();
-		return parent::run();
-	}
-
 	public function add_bootstrap_support(){
         return null;
     }
@@ -222,10 +211,13 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         $orbit_slider->setup();
 	}
 
-    private function addLayoutRowTypes() {
+    protected function add_layout_row_types() {
         // Site Header
         $cornerstone_header = new WPDDL_Integration_Layouts_Row_Cornerstone_header();
         $cornerstone_header->setup();
+
+        $cornerstone_footer = new WPDDL_Integration_Layouts_Row_Cornerstone_footer();
+        $cornerstone_footer->setup();
     }
 
 
