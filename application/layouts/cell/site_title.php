@@ -59,7 +59,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_
 		<div class="cell-content">
 			<p class="cell-name"><?php echo $this->name; ?></p>
 			<div class="cell-preview">
-				<div class="ddl-slider-preview ddl-orbit-slider-preview">
+				<div class="ddl-site-title-preview js-ddl-site-title-preview">
 					<?php bloginfo('name');?>
 				</div>
 			</div>

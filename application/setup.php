@@ -219,6 +219,9 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 		$sidebar_cell = new WPDDL_Integration_Layouts_Cell_Site_title();
 		$sidebar_cell->setup();
+
+        $navigation_cell = new WPDDL_Integration_Layouts_Cell_Navigation();
+        $navigation_cell->setup();
 	}
 
     private function addLayoutRowTypes() {
