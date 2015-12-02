@@ -41,10 +41,8 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Pr
                 : '';
 
             ob_start();
-            echo '<div' . $wrapper_id . ' class="' . $el_css . '" '.$this->renderDataAttributes().'>';
-            echo '<footer class="' . $args['row_class'] . '" role="contentinfo">';
-            echo '<' . $args['tag'] . ' class="' . $args['row_class'] . $el_css . $args['type'] .'"'.  $el_id . '>';
-
+            echo '<' . $args['tag'] . $wrapper_id . ' class="' . $el_css . '" '.$this->renderDataAttributes().'>';
+            echo '<footer class="' . $args['row_class'] . '" role="contentinfo" '. $el_id . ' >';
             $markup = ob_get_clean();
         }
 
@@ -54,7 +52,8 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Pr
     public function htmlClose( $output, $mode, $tag ) {
 
         if( $mode === $this->id ) {
-            $output = '</' . $tag . '></footer></div>';
+            $output =  '</footer>';
+            $output .= '</' . $tag . '>';
         }
 
         return $output;

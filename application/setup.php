@@ -209,6 +209,9 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 		$orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
         $orbit_slider->setup();
+
+        $footer_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_footer();
+        $footer_cell->setup();
 	}
 
     protected function add_layout_row_types() {
