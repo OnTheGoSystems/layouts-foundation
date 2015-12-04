@@ -23,6 +23,7 @@ DDLayout.OrbitSliderCell = function($){
         $sel =  $('.js-orbit-taxonomy');
         self.set_events();
 
+
         $select_terms.select2({
             'width' : 'resolve',
             enable : false
@@ -42,6 +43,7 @@ DDLayout.OrbitSliderCell = function($){
             additionalClass:'ddl-tooltip-info'
         });
     };
+
 
     self.handle_close = function(){
         self.reset_events();

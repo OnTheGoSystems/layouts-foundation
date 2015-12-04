@@ -51,36 +51,60 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 	}
 
     protected function _dialog_template() {
-       ob_start();?>
+        ob_start();?>
         <ul class="ddl-form js-form-cornerstone-orbitslider-wrap form-cornerstone-orbitslider-wrap">
+            <!--<li>
+                <label for="<?php the_ddl_name_attr('orbit_height'); ?>" class="ddl-manual-width-201"><?php _e( 'Slider height', 'ddl-layouts' ) ?>:</label>
+                <span class="ddl-input-wrap"><input type="number" name="<?php the_ddl_name_attr('orbit_height'); ?>" value="300" class="ddl-input-half-width"><span class="ddl-measure-unit ddl-measure-unit-orbit"><?php _e( 'px', 'ddl-layouts' ) ?></span></span>
+            </li>-->
             <li>
                 <label for="<?php the_ddl_name_attr('interval'); ?>" class="ddl-manual-width-201"><?php _e( 'Interval', 'ddl-layouts' ) ?>:</label>
                 <span class="ddl-input-wrap"><input type="number" name="<?php the_ddl_name_attr('interval'); ?>" value="5000" class="ddl-input-half-width"><span class="ddl-measure-unit"><?php _e( 'ms', 'ddl-layouts' ) ?></span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'The amount of time to delay between automatically cycling an item, ms.', 'ddl-layouts' ) ?>"></i></span>
             </li>
             <li>
-            <fieldset>
-                <legend><?php _e( 'Options', 'ddl-layouts' ) ?></legend>
-                <div class="fields-group">
-                    <label class="checkbox" for="<?php the_ddl_name_attr('autoplay'); ?>">
-                        <input type="checkbox" name="<?php the_ddl_name_attr('autoplay'); ?>" id="<?php the_ddl_name_attr('autoplay'); ?>" value="true">
-                        <?php _e( 'Autoplay', 'ddl-layouts' ) ?>
-                        <input type="hidden" name="<?php the_ddl_name_attr('pause'); ?>" id="<?php the_ddl_name_attr('pause'); ?>" value="pause">
-                    </label>
-                    <?php apply_filters('ddl-slider_cell_additional_options', '');?>
-                </div>
-            </fieldset>
+                <fieldset>
+                    <legend><?php _e( 'Options', 'ddl-layouts' ) ?></legend>
+                    <div class="fields-group">
+                        <label class="checkbox" for="<?php the_ddl_name_attr('autoplay'); ?>">
+                            <input type="checkbox" name="<?php the_ddl_name_attr('autoplay'); ?>" id="<?php the_ddl_name_attr('autoplay'); ?>" value="true">
+                            <?php _e( 'Autoplay', 'ddl-layouts' ) ?>
+                            <input type="hidden" name="<?php the_ddl_name_attr('pause'); ?>" id="<?php the_ddl_name_attr('pause'); ?>" value="true">
+                        </label>
+                        <label class="checkbox" for="<?php the_ddl_name_attr('variable_height'); ?>">
+                            <input type="checkbox" name="<?php the_ddl_name_attr('variable_height'); ?>" id="<?php the_ddl_name_attr('variable_height'); ?>" value="true">
+                            <?php _e( 'Variable height', 'ddl-layouts' ) ?>
+                        </label>
+                        <?php apply_filters('ddl-slider_cell_additional_options', '');?>
+                    </div>
+                </fieldset>
+              <!--  <fieldset class="from-top-6">
+                    <legend><?php _e( 'Image size', 'ddl-layouts' ) ?></legend>
+                    <div class="fields-group">
+                        <label class="checkbox checkbox-smaller" for="<?php the_ddl_name_attr('image_size'); ?>">
+                            <input type="radio" name="<?php the_ddl_name_attr('image_size'); ?>" id="<?php the_ddl_name_attr('image_size'); ?>" checked value="">
+                            <?php _e( 'Contain (crop)', 'ddl-layouts' ) ?>
+                        </label>
+                        <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'The background image will be scaled so that each side is as large as possible while not exceeding the length of the corresponding side of the container.', 'ddl-layouts' ) ?>"></i></span>
+                        <div class="clear from-bot-4"></div>
+                        <label class="checkbox checkbox-smaller" for="<?php the_ddl_name_attr('image_size'); ?>_cover">
+                            <input type="radio" name="<?php the_ddl_name_attr('image_size'); ?>" id="<?php the_ddl_name_attr('image_size'); ?>_cover" value="cover">
+                            <?php _e( 'Cover (add padding)', 'ddl-layouts' ) ?>
+                        </label>
+                        <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'The background image will be sized so that it is as small as possible while ensuring that both dimensions are greater than or equal to the corresponding size of the container.', 'ddl-layouts' ) ?>"></i></span>
+                    </div>
+                </fieldset> -->
             </li>
             <li>
-                <label for="<?php the_ddl_name_attr('image_size'); ?>"><?php _e('Orbit size', 'ddl-layouts') ?>:</label>
-            <select name="<?php the_ddl_name_attr('orbitsize'); ?>">
-                <?php echo Layouts_cell_imagebox::imagebox_cell_get_image_size_options(); ?>
-            </select>
+                <label for="<?php the_ddl_name_attr('orbitsize'); ?>"><?php _e('Orbit size', 'ddl-layouts') ?>:</label>
+                <select name="<?php the_ddl_name_attr('orbitsize'); ?>">
+                    <?php echo Layouts_cell_imagebox::imagebox_cell_get_image_size_options(); ?>
+                </select>
             </li>
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li>
                 <label for="<?php the_ddl_name_attr('orbit_taxonomy'); ?>"><?php _e('Select a taxonomy', 'ddl-layouts') ?>:<i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'Filter Orbit slides post type by taxonomy selected term. Leave it empty will fetch all.', 'ddl-layouts' ) ?>"></i></label>
                 <select class="orbit-taxonomy js-orbit-taxonomy" name="<?php the_ddl_name_attr('orbit_taxonomy'); ?>">
-                   <option value=""><?php _e('Select a taxonomy', 'ddl-layouts');?></option>
+                    <option value=""><?php _e('Select a taxonomy', 'ddl-layouts');?></option>
                     <?php echo $this->get_cat_select_options();?>
                 </select>
             </li>
@@ -128,9 +152,12 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
     }
 
     public static function orbit_slider( $content ) {
+        $unique_id = uniqid();
 
         $orbitsize = isset( $content['orbitsize'] ) ? $content['orbitsize'] : 'original';
         $args = array( 'post_type' => 'orbit');
+      //  $height = $content['orbit_height'] ? $content['orbit_height'] : 0;
+      //  $height_val = $height.'px';
 
         if ( isset( $content['orbit_taxonomy'] ) && $content['orbit_taxonomy'] !== ''  && isset( $content['orbit_term'] ) && $content['orbit_term'] !== '' ){
             $args['tax_query'] = array(
@@ -144,14 +171,17 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
         }
 
         $loop = new WP_Query( $args );
-
         $orbitparam = self::carousel_element_data_options( $content );
 
-        echo '<ul data-orbit ' . $orbitparam . '>';
+        echo '<ul id="orbit-'.$unique_id.'"  data-orbit  ' . $orbitparam . '>';
+
+        global $post;
 
         while ( $loop->have_posts() ) : $loop->the_post();
+            $add_style = '';
 
             if(has_post_thumbnail()) {
+
 
                 if($orbitsize != '') {
                     $orbitimagethumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), $orbitsize);
@@ -160,26 +190,33 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                     $orbitimagefull = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail_size');
                     $orbitimage = $orbitimagefull['0'];
                 }
+
+              /*  if( $content['image_size'] == 'cover' ):
+                    $add_style ='background: url('.$orbitimage.') no-repeat; background-size:cover';
+                endif;*/
+
                 $orbitimagealttext = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
                 $orbitcaption = get_post_meta(get_the_ID(), '_orbit_meta_box_caption_text', true );
                 $orbitlink = get_post_meta(get_the_ID(), '_orbit_meta_box_link_text', true );
+
+              //  echo '<li style="height:'.$height_val.';'.$add_style.'">';
                 echo '<li>';
                 if($orbitlink != '') {echo '<a href="' . $orbitlink . '">';}
+                //echo $add_style ? '' : '<img src="'. $orbitimage . '" alt="' . $orbitimagealttext . '"/>';
                 echo '<img src="'. $orbitimage . '" alt="' . $orbitimagealttext . '"/>';
                 if($orbitcaption != '') {echo '<div class="orbit-caption">' . $orbitcaption . '</div>';}
                 if($orbitlink != '') {echo '</a>';}
-                echo '</li>';
 
             } else {
 
-                echo '<li><h2>';
+                echo '<li>';
+                echo '<h2>';
                 the_title();
                 echo '</h2>';
                 the_content();
-                echo '</li>';
-
             }
 
+            echo '</li>';
         endwhile;
 
         echo '</ul>';
@@ -187,15 +224,16 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 
     public static function carousel_element_data_options($content){
         $data = '';
-        $content['autoplay'] = $content['autoplay'] === 1 ? "true" : "";
 
         $data .= 'data-options="timer:'.$content['autoplay'].';
                   animation:slide;
                   slide_number: '.$content['slide_number'].';
                   pause_on_hover:' .$content['pause'].';
+                  resume_on_mouseout: true;
                   timer_speed:' .$content['interval'].';
                   animation_speed:500;
                   navigation_arrows:true;
+                  variable_height:'.$content['variable_height'].';
                   bullets:'.$content['bullets'].';"';
 
         return $data;
