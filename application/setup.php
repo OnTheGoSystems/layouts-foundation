@@ -94,7 +94,8 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 */
 	protected function get_supported_templates() {
 		return array(
-			'template-page.php' => __( 'Template page', 'ddl-layouts' )
+            $this->getPageTemplateDefault() => __( 'Template page', 'ddl-layouts' ),
+            'template-index.php' => __( 'Layouts archive template', 'ddl-layouts' )
 		);
 	}
 
