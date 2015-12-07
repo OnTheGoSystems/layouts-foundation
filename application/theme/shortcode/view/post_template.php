@@ -13,13 +13,13 @@
     <?php do_action( 'cornerstone_before_content' ); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
+    <?php if ( is_sticky() && is_home() && ! is_paged()  ) : ?>
         <div class="featured-post">
             <?php _e( 'Featured post', 'cornerstone' ); ?>
         </div>
     <?php endif; ?>
     <header class="entry-header">
-        <?php if ( is_single() ) : ?>
+        <?php if ( is_page() || is_single() ) : ?>
             <h1 class="entry-title"><?php the_title(); ?></h1>
         <?php else : ?>
             <h2 class="entry-title">
