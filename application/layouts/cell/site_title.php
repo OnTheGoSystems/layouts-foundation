@@ -45,7 +45,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Site_title_Cell';
 
-	public function __contruct(){
+	public function __construct(){
 		$this->description = __('Allows to render Cornerstone site title. Suggested use in a Cornerstone site header row.', 'ddl-layouts');
 	}
 
