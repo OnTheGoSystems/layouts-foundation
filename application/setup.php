@@ -16,6 +16,12 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
          add_action('init', array('WPDDL_Integration_Framework_Foundation', 'get_instance') );
     }
 
+    public function run(){
+        parent::run();
+        $this->add_shortcodes();
+        return true;
+    }
+
 	public function add_bootstrap_support(){
         return null;
     }
@@ -194,6 +200,14 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         } else {
             return true;
         }
+    }
+
+    public function add_shortcodes() {
+        // post-template
+        $post_content = new WPDDL_Integration_Theme_Shortcode_Post_Template();
+        $post_content->setup();
+
+        return $this;
     }
 
 	/**
