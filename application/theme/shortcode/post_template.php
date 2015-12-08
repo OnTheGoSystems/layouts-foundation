@@ -1,5 +1,6 @@
 <?php
 
+if( class_exists('WPDDL_Integration_Theme_Shortcode_Post_Template') ) return;
 
 class WPDDL_Integration_Theme_Shortcode_Post_Template
     extends WPDDL_Shortcode_Abstract {
@@ -47,6 +48,13 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
 
         $this->setOption( $option );
 
+        add_filter('ddl-do-not-apply-overlay-for-post-editor', array(&$this, 'add_cornerstone_shortcode') );
+
         parent::setup();
+    }
+
+    function add_cornerstone_shortcode($codes){
+        $codes[] = 'cornerstone-post-template';
+        return $codes;
     }
 }
