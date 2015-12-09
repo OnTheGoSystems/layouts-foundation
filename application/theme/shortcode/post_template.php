@@ -29,7 +29,7 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
             $this->getId(),
             $field->getId(),
             'default',
-            'Genesis Output with all Hooks',
+            'Cornerstone Output with all Hooks',
             true
         ) );
 
@@ -38,7 +38,7 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
             $this->getId(),
             $field->getId(),
             'editable',
-            'Genesis Output - editable in Editor',
+            'Cornerstone Output - editable in Editor',
             false,
             dirname( __FILE__ ) . '/view/post_template_editable.php'
         ) );
