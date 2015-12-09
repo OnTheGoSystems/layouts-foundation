@@ -6,11 +6,8 @@
  * @subpackage Cornerstone
  * @since Cornerstone 2.2.2
  */
+the_post();
 ?>
-
-<div id="content" role="main">
-
-    <?php do_action( 'cornerstone_before_content' ); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ( is_sticky() && is_home() && ! is_paged()  ) : ?>
@@ -47,7 +44,3 @@
     </footer>
 
 </article>
-
-    <?php do_action( 'cornerstone_after_content' ); ?>
-
-</div>
