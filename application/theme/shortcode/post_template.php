@@ -48,6 +48,8 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
 
         $this->setOption( $option );
 
+        $this->disable_content_editor_overlay();
+
         parent::setup();
     }
 }
