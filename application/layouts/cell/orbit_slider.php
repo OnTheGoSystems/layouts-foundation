@@ -68,7 +68,10 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                         <label class="checkbox" for="<?php the_ddl_name_attr('autoplay'); ?>">
                             <input type="checkbox" name="<?php the_ddl_name_attr('autoplay'); ?>" id="<?php the_ddl_name_attr('autoplay'); ?>" value="true">
                             <?php _e( 'Autoplay', 'ddl-layouts' ) ?>
-                            <input type="hidden" name="<?php the_ddl_name_attr('pause'); ?>" id="<?php the_ddl_name_attr('pause'); ?>" value="true">
+                        </label>
+                        <label class="checkbox" for="<?php the_ddl_name_attr('pause'); ?>">
+                            <input type="checkbox" name="<?php the_ddl_name_attr('pause'); ?>" id="<?php the_ddl_name_attr('pause'); ?>" value="pause" disabled>
+                            <?php _e( 'Pause on hover', 'ddl-layouts' ) ?>
                         </label>
                         <label class="checkbox" for="<?php the_ddl_name_attr('variable_height'); ?>">
                             <input type="checkbox" name="<?php the_ddl_name_attr('variable_height'); ?>" id="<?php the_ddl_name_attr('variable_height'); ?>" value="true">
