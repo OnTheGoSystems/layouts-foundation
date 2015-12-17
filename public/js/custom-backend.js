@@ -13,7 +13,6 @@ DDLayout.ThemeIntegrations.CustomBackendFunctionality = function ($) {
 
     self.init = function () {
         DDLayout.ThemeIntegrations.MenuCellOverides.call({}, $);
-        DDLayout.ThemeIntegrations.SliderCellOverrides.call({}, $);
     };
 
     self.init();
@@ -59,36 +58,6 @@ DDLayout.ThemeIntegrations.MenuCellOverides = function ($) {
         } else {
             $top.prop('checked', true).trigger('change').prop('disabled', false);
         }
-    };
-
-    self.init();
-};
-
-DDLayout.ThemeIntegrations.SliderCellOverrides = function($){
-    var self = this, $dir, $top;
-
-    self.init = function () {
-        jQuery(document).on('slider-cell.dialog-open', self.handle_open);
-        jQuery(document).on('slider-cell.dialog-close', self.handle_close);
-    };
-
-    self.handle_open = function(){
-        $('#ddl-layout-autoplay').on('click', self.handle_auto_change );
-    };
-
-    self.handle_auto_change = function(event){
-
-            if( $(this).is(':checked') ){
-
-                $('#ddl-layout-pause').prop('disabled', false);
-            } else{
-
-                $('#ddl-layout-pause').prop('disabled', true);
-            }
-    };
-
-    self.handle_close = function(){
-        $('#ddl-layout-autoplay').off('change',self.handle_auto_change );
     };
 
     self.init();
