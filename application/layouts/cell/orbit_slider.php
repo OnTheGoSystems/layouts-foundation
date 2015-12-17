@@ -228,13 +228,16 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
         $data .= 'data-options="timer:'.$content['autoplay'].';
                   animation:slide;
                   slide_number: '.$content['slide_number'].';
-                  pause_on_hover:' .$content['pause'].';
+                  pause_on_hover:'.$content['pause'].';
                   resume_on_mouseout: true;
-                  timer_speed:' .$content['interval'].';
+                  timer_speed:' . $content['interval']. ';
+                  timer_container_class:orbit-timer;
+                  timer_paused_class:paused;
+                  timer_progress_class:orbit-progress;
                   animation_speed:500;
                   navigation_arrows:true;
                   variable_height:'.$content['variable_height'].';
-                  bullets:'.$content['bullets'].';"';
+                  bullets:'. $content['bullets'] .';"';
 
         return $data;
     }
