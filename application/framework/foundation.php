@@ -81,11 +81,15 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     }
 
     public static function carousel_element_data_options(){
-        $data = 'data-options="timer:' . get_ddl_field('autoplay') . ';
+        $data = 'data-options="timer:'.get_ddl_field('autoplay').';
                   animation:slide;
                   slide_number: '.get_ddl_field('slide_number').';
-                  pause_on_hover:' . get_ddl_field('pause') . ';
-                  timer_speed:' . get_ddl_field('interval') . '
+                  pause_on_hover:'.get_ddl_field('pause').';
+                  resume_on_mouseout: true;
+                  timer_speed:' . get_ddl_field('interval') . ';
+                  timer_container_class:orbit-timer;
+                  timer_paused_class:paused;
+                  timer_progress_class:orbit-progress;
                   animation_speed:500;
                   navigation_arrows:true;
                   bullets:'. get_ddl_field('bullets') .';"';
