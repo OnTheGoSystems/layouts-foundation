@@ -11,9 +11,19 @@ DDLayout.OrbitSliderCell = function($){
             model = null,
             dialog = null;
 
+    self.selected_term = null;
+
     self.init = function(){
         jQuery(document).on('cornerstone-orbitslider.dialog-open', self.handle_open);
         jQuery(document).on('cornerstone-orbitslider.dialog-close', self.handle_close);
+    };
+
+    self.handle_save = function( target_cell, cached_element, dialog ){
+            if( self.selected_term ){
+                var content = target_cell.get('content');
+                content.orbit_term = self.selected_term;
+                target_cell.set('content', content);
+            }
     };
 
     self.handle_open = function(event, object, parent_dialog){
@@ -54,11 +64,13 @@ DDLayout.OrbitSliderCell = function($){
     self.set_events = function(){
         self.init_pointer_event();
         $sel.on('change', self.handle_taxonomy_change);
+        wp.hooks.addFilter('ddl-layouts-before-cell-save', self.handle_save);
     };
 
     self.reset_events = function(){
         $sel.off('change', self.handle_taxonomy_change);
         $select_terms.empty().select2('destroy');
+        wp.hooks.removeFilter('ddl-layouts-before-cell-save', self.handle_save);
     };
 
     self.handle_taxonomy_change = function(event){
@@ -78,6 +90,7 @@ DDLayout.OrbitSliderCell = function($){
         };
 
         dialog.insert_spinner_after_absolute( $select_terms, {"position":"relative", "bottom": "20px"} );
+        $select_terms.off('change', self.handle_terms_change);
 
         WPV_Toolset.Utils.do_ajax_post(params, {
             success:function( response ){
@@ -108,6 +121,7 @@ DDLayout.OrbitSliderCell = function($){
                             selected = ' selected="selected"';
                             value = k;
                             text = v;
+                            self.selected_term = v;
                         }
                         option.innerHTML = '<option value="'+k+'" '+selected+'>'+v+'</option>';
                         fragment.appendChild( option );
@@ -121,6 +135,7 @@ DDLayout.OrbitSliderCell = function($){
 
                     $select_terms.append( empty, fragment);
                     $select_terms.select2('data', {id: value, text: text});
+                    $select_terms.on('change', self.handle_terms_change);
                 }
 
             },
@@ -140,10 +155,14 @@ DDLayout.OrbitSliderCell = function($){
         });
     };
 
+    self.handle_terms_change = function(event){
+        var value = $(this).val();
+        self.selected_term = value;
+    };
+
     self.has_selected = function( v, is_open ){
 
         if( is_open === false ) return false;
-
         if( model.content.orbit_term === v ){
             return true;
         }
