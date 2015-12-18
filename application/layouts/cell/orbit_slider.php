@@ -80,22 +80,6 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                         <?php apply_filters('ddl-slider_cell_additional_options', '');?>
                     </div>
                 </fieldset>
-              <!--  <fieldset class="from-top-6">
-                    <legend><?php _e( 'Image size', 'ddl-layouts' ) ?></legend>
-                    <div class="fields-group">
-                        <label class="checkbox checkbox-smaller" for="<?php the_ddl_name_attr('image_size'); ?>">
-                            <input type="radio" name="<?php the_ddl_name_attr('image_size'); ?>" id="<?php the_ddl_name_attr('image_size'); ?>" checked value="">
-                            <?php _e( 'Contain (crop)', 'ddl-layouts' ) ?>
-                        </label>
-                        <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'The background image will be scaled so that each side is as large as possible while not exceeding the length of the corresponding side of the container.', 'ddl-layouts' ) ?>"></i></span>
-                        <div class="clear from-bot-4"></div>
-                        <label class="checkbox checkbox-smaller" for="<?php the_ddl_name_attr('image_size'); ?>_cover">
-                            <input type="radio" name="<?php the_ddl_name_attr('image_size'); ?>" id="<?php the_ddl_name_attr('image_size'); ?>_cover" value="cover">
-                            <?php _e( 'Cover (add padding)', 'ddl-layouts' ) ?>
-                        </label>
-                        <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'The background image will be sized so that it is as small as possible while ensuring that both dimensions are greater than or equal to the corresponding size of the container.', 'ddl-layouts' ) ?>"></i></span>
-                    </div>
-                </fieldset> -->
             </li>
             <li>
                 <label for="<?php the_ddl_name_attr('orbitsize'); ?>"><?php _e('Orbit size', 'ddl-layouts') ?>:</label>
@@ -158,7 +142,10 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
         $unique_id = uniqid();
 
         $orbitsize = isset( $content['orbitsize'] ) ? $content['orbitsize'] : 'original';
-        $args = array( 'post_type' => 'orbit');
+        $args = array(
+            'post_type' => 'orbit',
+            'posts_per_page' => -1
+        );
       //  $height = $content['orbit_height'] ? $content['orbit_height'] : 0;
       //  $height_val = $height.'px';
 
@@ -166,9 +153,8 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
             $args['tax_query'] = array(
                 array(
                     'taxonomy' => $content['orbit_taxonomy'],
-                    'field'    => 'name',
-                    'terms'    => $content['orbit_term'],
-                    'operator' => '=',
+                    'field'    => 'slug',
+                    'terms'    => array( $content['orbit_term'] )
                 )
             );
         }
