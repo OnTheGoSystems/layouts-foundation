@@ -222,6 +222,9 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         $navigation_cell = new WPDDL_Integration_Layouts_Cell_Navigation();
         $navigation_cell->setup();
 
+        $sidebar_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar();
+        $sidebar_cell->setup();
+
 		$orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
         $orbit_slider->setup();
 
