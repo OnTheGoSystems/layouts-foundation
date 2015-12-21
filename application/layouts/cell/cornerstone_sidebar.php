@@ -31,6 +31,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell extends WPDDL_Cell
 
 	public function __construct($name, $width, $css_class_name, $content, $css_id, $tag)
 	{
+		$css_class_name = $css_class_name . ' cornerstone-sidebar-cell';
 		parent::__construct($name, $width, $css_class_name, $content, $css_id, $tag);
 	}
 }
@@ -46,7 +47,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell_Factory extends WP
 
 	public function __construct(){
         $this->description       = __('Display the Cornerstone Cornerstone sidebar element with and all its hooks.', 'ddl-layouts');
-		$this->allow_multiple = false;
+		$this->allow_multiple = true;
 	}
 
 	protected function setCellImageUrl() {

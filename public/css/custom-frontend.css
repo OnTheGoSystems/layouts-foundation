@@ -11,3 +11,4 @@
 .top-bar > .site-title-cell:first-child{padding-left:0px;padding-right:0px;}
 .top-bar >.small-1:first-child, .top-bar > .medium-1:first-child, .top-bar > .large-1:first-child{width:auto;}
 .post-pagination-cell{padding-top:12px;}
+.cornerstone-sidebar-cell{padding-top:16px;}
