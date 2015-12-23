@@ -1,8 +1,6 @@
 <?php
 class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Preset_Fullwidth_Background{
 
-    private $css_id;
-
     public function setup() {
 
         $this->image =
@@ -57,15 +55,5 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Pr
         }
 
         return $output;
-    }
-
-    private function getCssid() {
-        return $this->css_id;
-    }
-
-    private function setCssId( $css_id ) {
-        $this->css_id = $css_id;
-
-        return $this;
     }
 }
