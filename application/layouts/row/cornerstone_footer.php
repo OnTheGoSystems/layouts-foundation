@@ -38,6 +38,8 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Pr
                 ? ' id="' . $wrapper_id . '"'
                 : '';
 
+            $el_css .= ' container-fluid';
+
             ob_start();
             echo '<' . $args['tag'] . $wrapper_id . ' class="' . $el_css . '" '.$this->renderDataAttributes().'>';
             echo '<footer class="' . $args['row_class'] . '" role="contentinfo" '. $el_id . ' >';
