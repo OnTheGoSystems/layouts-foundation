@@ -184,12 +184,18 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
             $class = ' inline-list';
         }
 
+        elseif( get_ddl_field('topbar') ){
+            $class .= ' menu dropdown';
+        }
+
         return $class;
     }
 
     public function add_menu_args( $args ){
         if( get_ddl_field('menu_dir') === 'nav-horizontal' && !get_ddl_field('topbar') ){
             $args['flying_class'] = 'no';
+        } elseif( get_ddl_field('topbar') ){
+            $args['items_wrap'] = '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>';
         }
         return $args;
     }
