@@ -231,9 +231,11 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         $sidebar_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar();
         $sidebar_cell->setup();
 
-		$orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
-        $orbit_slider->setup();
-
+        if( function_exists( 'Orbit' ) ){
+            $orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
+            $orbit_slider->setup();
+        }
+        
         $footer_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_footer();
         $footer_cell->setup();
 	}
