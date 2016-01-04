@@ -134,7 +134,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         add_filter( 'ddl-get_menu_class', array(&$this, 'add_menu_class_if'), 10, 2 );
         add_filter( 'ddl-menu-walker-args', array(&$this, 'add_menu_args'), 10 );
         add_filter( 'ddl-get_cell_element_classes', array(&$this, 'add_topbar_class'), 999, 3 );
-        add_filter( 'ddl-additional_cells_tag_attributes_render', array(&$this, 'add_menu_style'), 999, 3 );
+      //  add_filter( 'ddl-additional_cells_tag_attributes_render', array(&$this, 'add_menu_style'), 999, 3 );
     }
 
     public function add_topbar_class( $classes, $renderer, $cell ){
@@ -143,6 +143,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
             $cell->get_content_field_value('topbar')
          ){
             $classes .= ' top-bar-section';
+            $classes .= ' top-bar-'.$cell->get_content_field_value( 'menu_align' );
         }
         return $classes;
     }
@@ -177,11 +178,11 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         $align = get_ddl_field('menu_align');
 
         if( is_null( $align  ) === false ){
-            $class .= ' '.$align;
+            $class = ' top-bar-'.$align;
         }
 
         if( get_ddl_field('menu_dir') === 'nav-horizontal' && !get_ddl_field('topbar') ){
-            $class = ' inline-list';
+            $class .= ' inline-list';
         }
 
         elseif( get_ddl_field('topbar') ){
@@ -235,7 +236,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
             $orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
             $orbit_slider->setup();
         }
-        
+
         $footer_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_footer();
         $footer_cell->setup();
 	}
