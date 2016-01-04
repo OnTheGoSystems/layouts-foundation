@@ -30,6 +30,8 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_header extends WPDDL_Row_Type_Pr
                 ? ' '.$args['additionalCssClasses']
                 : '';
 
+            $args['cssId'] = "top-menu";
+
             $el_id = isset( $args['cssId'] ) && ! empty( $args['cssId'] )
                 ? ' id="' . $args['cssId'] . '"'
                 : '';
