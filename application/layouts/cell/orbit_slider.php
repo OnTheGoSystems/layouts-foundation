@@ -77,9 +77,17 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                             <input type="checkbox" name="<?php the_ddl_name_attr('variable_height'); ?>" id="<?php the_ddl_name_attr('variable_height'); ?>" value="true">
                             <?php _e( 'Variable height', 'ddl-layouts' ) ?>
                         </label>
+                        <label class="checkbox" for="<?php the_ddl_name_attr('motion_ui'); ?>">
+                            <input type="checkbox" name="<?php the_ddl_name_attr('motion_ui'); ?>" id="<?php the_ddl_name_attr('motion_ui'); ?>" value="true">
+                            <?php _e( 'Use Motion-UI', 'ddl-layouts' ) ?>
+                        </label>
                         <?php apply_filters('ddl-slider_cell_additional_options', '');?>
                     </div>
                 </fieldset>
+            </li>
+            <li>
+                <label for="<?php the_ddl_name_attr('orbit_aria'); ?>"><?php _e( 'Orbit aria label', 'ddl-layouts' ) ?>:</label>
+                <input type="text" name="<?php the_ddl_name_attr('orbit_aria'); ?>" id="<?php the_ddl_name_attr('orbit_aria'); ?>" value="" placeholder="Aria label">
             </li>
             <li>
                 <label for="<?php the_ddl_name_attr('orbitsize'); ?>"><?php _e('Orbit size', 'ddl-layouts') ?>:</label>
@@ -146,8 +154,6 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
             'post_type' => 'orbit',
             'posts_per_page' => -1
         );
-      //  $height = $content['orbit_height'] ? $content['orbit_height'] : 0;
-      //  $height_val = $height.'px';
 
         if ( isset( $content['orbit_taxonomy'] ) && $content['orbit_taxonomy'] !== ''  && isset( $content['orbit_term'] ) && $content['orbit_term'] !== '' ){
             $args['tax_query'] = array(
@@ -162,15 +168,23 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
         $loop = new WP_Query( $args );
         $orbitparam = self::carousel_element_data_options( $content );
 
-        echo '<ul id="orbit-'.$unique_id.'"  data-orbit  ' . $orbitparam . '>';
+        echo '<div id="orbit-'.$unique_id.'" class="orbit" role="region"' .
+            (isset($content['orbit_aria']) && $content['orbit_aria'] ? ' aria-label="' . $content['orbit_aria'] . '"' : '' ) .
+            ' data-orbit ' . $orbitparam .
+            (isset($content['motion_ui']) && $content['motion_ui'] ? ' data-use-m-u-i="true"' : ' data-use-m-u-i="false"' ) .'>';
 
-        global $post;
+        echo '<ul class="orbit-container">';?>
+
+        <button class="orbit-previous" aria-label="<?php _e('previous','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Previous Slide','cornerstone'); ?></span>&#10094;</button>
+    	<button class="orbit-next" aria-label="<?php _e('next','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Next Slide','cornerstone'); ?></span>&#10095;</button>
+
+        <?php
+        global $post, $wp_query;
 
         while ( $loop->have_posts() ) : $loop->the_post();
             $add_style = '';
 
             if(has_post_thumbnail()) {
-
 
                 if($orbitsize != '') {
                     $orbitimagethumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), $orbitsize);
@@ -179,52 +193,46 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                     $orbitimagefull = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail_size');
                     $orbitimage = $orbitimagefull['0'];
                 }
-
-              /*  if( $content['image_size'] == 'cover' ):
-                    $add_style ='background: url('.$orbitimage.') no-repeat; background-size:cover';
-                endif;*/
-
                 $orbitimagealttext = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
                 $orbitcaption = get_post_meta(get_the_ID(), '_orbit_meta_box_caption_text', true );
                 $orbitlink = get_post_meta(get_the_ID(), '_orbit_meta_box_link_text', true );
-
-              //  echo '<li style="height:'.$height_val.';'.$add_style.'">';
-                echo '<li>';
+                echo '<li class="' . ($wp_query->current_post == 0 && !is_paged() ? 'is-active ' : '' ) . 'orbit-slide">';
                 if($orbitlink != '') {echo '<a href="' . $orbitlink . '">';}
-                //echo $add_style ? '' : '<img src="'. $orbitimage . '" alt="' . $orbitimagealttext . '"/>';
-                echo '<img src="'. $orbitimage . '" alt="' . $orbitimagealttext . '"/>';
-                if($orbitcaption != '') {echo '<div class="orbit-caption">' . $orbitcaption . '</div>';}
+                echo '<img class="orbit-image" src="'. $orbitimage . '" alt="' . $orbitimagealttext . '"/>';
+                if($orbitcaption != '') {echo '<figcaption class="orbit-caption">' . $orbitcaption . '</figcaption>';}
                 if($orbitlink != '') {echo '</a>';}
+                echo '</li>';
 
             } else {
 
-                echo '<li>';
-                echo '<h2>';
+                echo '<li class="orbit-slide"><h3>';
                 the_title();
-                echo '</h2>';
+                echo '</h3>';
                 the_content();
+                echo '</li>';
             }
 
-            echo '</li>';
         endwhile;
 
         echo '</ul>';
+        echo '</div>';
     }
 
     public static function carousel_element_data_options($content){
         $data = '';
-
-        $data .= 'data-options="timer:'.$content['autoplay'].';
+        $autoplay = $content['autoplay'] ? 'true' : 'false';
+        $data .= 'data-options="autoPlay:'.$autoplay.';
+                  timer:'.$autoplay.';
                   animation:slide;
                   slide_number: '.$content['slide_number'].';
-                  pause_on_hover:'.$content['pause'].';
+                  pauseOnHover:'.$content['pause'].';
                   resume_on_mouseout: true;
-                  timer_speed:' . $content['interval']. ';
+                  timerDelay:' . $content['interval']. ';
                   timer_container_class:orbit-timer;
                   timer_paused_class:paused;
                   timer_progress_class:orbit-progress;
                   animation_speed:500;
-                  navigation_arrows:true;
+                  navButtons:true;
                   variable_height:'.$content['variable_height'].';
                   bullets:'. $content['bullets'] .';"';
 
