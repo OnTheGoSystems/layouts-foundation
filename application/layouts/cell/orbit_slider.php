@@ -77,7 +77,10 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                             <input type="checkbox" name="<?php the_ddl_name_attr('motion_ui'); ?>" id="<?php the_ddl_name_attr('motion_ui'); ?>" value="true">
                             <?php _e( 'Use Motion-UI', 'ddl-layouts' ) ?>
                         </label>
-                        <?php apply_filters('ddl-slider_cell_additional_options', '');?>
+                        <label class="checkbox" for="<?php the_ddl_name_attr('bullets'); ?>">
+                            <input type="checkbox" name="<?php the_ddl_name_attr('bullets'); ?>" id="<?php the_ddl_name_attr('bullets'); ?>" value="bullets">
+                            <?php _e( 'Bullets', 'ddl-layouts' ) ?>
+                        </label>
                     </div>
                 </fieldset>
             </li>
