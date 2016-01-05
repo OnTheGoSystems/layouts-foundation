@@ -39,7 +39,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     public function addCarouselOverrides(){
         add_filter( 'ddl-carousel_element_tag', array(&$this, 'carousel_element_tag') );
         add_filter( 'ddl-carousel_elements_tag', array(&$this, 'carousel_elements_tag') );
-        add_filter( 'ddl-carousel_element_data_attribute', array(__CLASS__, 'carousel_element_data_attribute') );
+        add_filter( 'ddl-carousel_container_additional_attributes', array(__CLASS__, 'carousel_element_data_attribute') );
         add_filter( 'ddl-carousel_container_class', array(&$this, 'carousel_container_class') );
         add_filter('ddl-carousel_caption_class_attribute', array(&$this, 'carousel_caption_class_attribute'));
         add_filter('ddl-get_carousel_indicators', array(&$this, 'get_carousel_indicators'));
@@ -47,8 +47,33 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         add_filter( 'ddl-carousel_control_right', array(&$this, 'get_bs_thumbnail_gui') );
         add_filter( 'ddl-get_autoplay_script', array(&$this, 'orbit_js_overrides'), 10, 2 );
         add_filter( 'ddl-slider_cell_additional_options', array(&$this, 'add_slider_controls') );
+        add_filter( 'ddl-carousel_active_element_class', array(&$this, 'get_slider_active_class'), 10, 1 );
+        add_filter( 'ddl-carousel_element_class_attribute', array(&$this, 'get_slider_element_class_attribute'), 10, 1 );
+        add_filter( 'ddl-carousel_items_classes', array(&$this, 'get_slider_items_classes'), 10, 1 );
+        add_filter('ddl-get_additional_carousel_top_controls_if', array(&$this, 'get_additional_carousel_top_controls'), 10, 1);
     }
 
+    public function get_additional_carousel_top_controls( $html ){
+        ob_start();?>
+        <button class="orbit-previous" aria-label="<?php _e('previous','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Previous Slide','cornerstone'); ?></span>&#10094;</button>
+        <button class="orbit-next" aria-label="<?php _e('next','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Next Slide','cornerstone'); ?></span>&#10095;</button>
+        <?php
+        echo ob_get_clean();
+    }
+
+    public function get_slider_element_class_attribute( $class ){
+        $class .= ' orbit-container';
+        return $class;
+    }
+
+    public function get_slider_items_classes( $class ){
+        $class .= ' orbit-slide ';
+        return $class;
+    }
+
+    public function get_slider_active_class(){
+        return 'is-active';
+    }
 
     public function add_slider_controls(){
         ob_start();?>
@@ -75,18 +100,21 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     public static function carousel_element_data_attribute()
     {
         $data = 'data-orbit ';
+        $data .= ' data-use-m-u-i="true" ';
         $data .= self::carousel_element_data_options();
 
         return $data;
     }
 
     public static function carousel_element_data_options(){
-        $data = 'data-options="timer:'.get_ddl_field('autoplay').';
+        $autoplay = get_ddl_field('autoplay') ? 'true' : 'false';
+        $data = 'data-options="autoPlay:'.$autoplay.';
+                  timer:'.$autoplay.';
                   animation:slide;
                   slide_number: '.get_ddl_field('slide_number').';
-                  pause_on_hover:'.get_ddl_field('pause').';
+                  pauseOnHover:'.get_ddl_field('pause').';
                   resume_on_mouseout: true;
-                  timer_speed:' . get_ddl_field('interval') . ';
+                  timerDelay:' . get_ddl_field('interval') . ';
                   timer_container_class:orbit-timer;
                   timer_paused_class:paused;
                   timer_progress_class:orbit-progress;
@@ -98,7 +126,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     }
 
     public function carousel_container_class(){
-        return 'orbit-container';
+        return 'orbit';
     }
 
     public function carousel_caption_class_attribute(){
