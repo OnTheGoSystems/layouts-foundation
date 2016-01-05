@@ -86,7 +86,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                 <input type="text" name="<?php the_ddl_name_attr('orbit_aria'); ?>" id="<?php the_ddl_name_attr('orbit_aria'); ?>" value="" placeholder="Aria label">
             </li>
             <li>
-                <label for="<?php the_ddl_name_attr('orbitsize'); ?>"><?php _e('Orbit size', 'ddl-layouts') ?>:</label>
+                <label for="<?php the_ddl_name_attr('orbitsize'); ?>"><?php _e('Orbit size', 'ddl-layouts') ?>:<i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'The size option works only with image only slides. If post slides and featured image slides are mixed, the size maybe taken from the former.', 'ddl-layouts' ) ?>"></i></label>
                 <select name="<?php the_ddl_name_attr('orbitsize'); ?>">
                     <?php echo Layouts_cell_imagebox::imagebox_cell_get_image_size_options(); ?>
                 </select>
@@ -226,7 +226,6 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
         $data = '';
         $autoplay = $content['autoplay'] ? 'true' : 'false';
         $bullets = $content['bullets'] ? 'true' : 'false';
-        $num = $content['slide_number'] ? 'true' : 'false';
 
         $data .= 'data-options="autoPlay:'.$autoplay.';
                   pauseOnHover:'.$content['pause'].';
