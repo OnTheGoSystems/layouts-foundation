@@ -213,7 +213,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
             }
 
         endwhile;
-
+        wp_reset_query ();
         echo '</ul>';
         echo '</div>';
     }
