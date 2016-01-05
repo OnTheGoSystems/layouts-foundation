@@ -81,10 +81,6 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
             <input type="checkbox" name="<?php the_ddl_name_attr('bullets'); ?>" id="<?php the_ddl_name_attr('bullets'); ?>" value="bullets">
             <?php _e( 'Bullets', 'ddl-layouts' ) ?>
         </label>
-        <label class="checkbox" for="<?php the_ddl_name_attr('slide_number'); ?>">
-            <input type="checkbox" name="<?php the_ddl_name_attr('slide_number'); ?>" id="<?php the_ddl_name_attr('slide_number'); ?>" value="slide_number">
-            <?php _e( 'Slide number', 'ddl-layouts' ) ?>
-        </label>
         <?php
         echo ob_get_clean();
     }

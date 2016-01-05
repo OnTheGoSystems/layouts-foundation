@@ -73,10 +73,6 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                             <input type="checkbox" name="<?php the_ddl_name_attr('pause'); ?>" id="<?php the_ddl_name_attr('pause'); ?>" value="pause" disabled>
                             <?php _e( 'Pause on hover', 'ddl-layouts' ) ?>
                         </label>
-                        <label class="checkbox" for="<?php the_ddl_name_attr('variable_height'); ?>">
-                            <input type="checkbox" name="<?php the_ddl_name_attr('variable_height'); ?>" id="<?php the_ddl_name_attr('variable_height'); ?>" value="true">
-                            <?php _e( 'Variable height', 'ddl-layouts' ) ?>
-                        </label>
                         <label class="checkbox" for="<?php the_ddl_name_attr('motion_ui'); ?>">
                             <input type="checkbox" name="<?php the_ddl_name_attr('motion_ui'); ?>" id="<?php the_ddl_name_attr('motion_ui'); ?>" value="true">
                             <?php _e( 'Use Motion-UI', 'ddl-layouts' ) ?>
@@ -148,7 +144,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 
     public static function orbit_slider( $content ) {
         $unique_id = uniqid();
-
+        $count_slides = 0;
         $orbitsize = isset( $content['orbitsize'] ) ? $content['orbitsize'] : 'original';
         $args = array(
             'post_type' => 'orbit',
@@ -183,9 +179,8 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 
         while ( $loop->have_posts() ) : $loop->the_post();
             $add_style = '';
-
-            if(has_post_thumbnail()) {
-
+            echo '<li class="' . ($wp_query->current_post == 0 && !is_paged() ? 'is-active ' : '' ) . 'orbit-slide">';
+            if( has_post_thumbnail() ) {
                 if($orbitsize != '') {
                     $orbitimagethumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), $orbitsize);
                     $orbitimage = $orbitimagethumbnail['0'];
@@ -196,7 +191,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
                 $orbitimagealttext = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
                 $orbitcaption = get_post_meta(get_the_ID(), '_orbit_meta_box_caption_text', true );
                 $orbitlink = get_post_meta(get_the_ID(), '_orbit_meta_box_link_text', true );
-                echo '<li class="' . ($wp_query->current_post == 0 && !is_paged() ? 'is-active ' : '' ) . 'orbit-slide">';
+
                 if($orbitlink != '') {echo '<a href="' . $orbitlink . '">';}
                 echo '<img class="orbit-image" src="'. $orbitimage . '" alt="' . $orbitimagealttext . '"/>';
                 if($orbitcaption != '') {echo '<figcaption class="orbit-caption">' . $orbitcaption . '</figcaption>';}
@@ -205,36 +200,43 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 
             } else {
 
-                echo '<li class="orbit-slide"><h3>';
                 the_title();
                 echo '</h3>';
                 the_content();
-                echo '</li>';
-            }
 
+            }
+            echo '</li>';
+            $count_slides++;
         endwhile;
         wp_reset_query ();
         echo '</ul>';
+        if( $content['bullets'] ):
+        ?>
+        <nav class="orbit-bullets"> <?php
+		for($i=0;$i<$count_slides;$i++) {
+            echo '<button class="' . ($i == 0 ? 'is-active ' : '') . '" data-slide="' . $i . '"><span class="show-for-sr">slide' . $i . 'details.</span></button>';
+        }
+		 ?></nav> <?php
+            endif;
         echo '</div>';
+
     }
 
     public static function carousel_element_data_options($content){
         $data = '';
         $autoplay = $content['autoplay'] ? 'true' : 'false';
+        $bullets = $content['bullets'] ? 'true' : 'false';
+        $num = $content['slide_number'] ? 'true' : 'false';
+
         $data .= 'data-options="autoPlay:'.$autoplay.';
-                  timer:'.$autoplay.';
-                  animation:slide;
-                  slide_number: '.$content['slide_number'].';
                   pauseOnHover:'.$content['pause'].';
                   resume_on_mouseout: true;
                   timerDelay:' . $content['interval']. ';
-                  timer_container_class:orbit-timer;
-                  timer_paused_class:paused;
-                  timer_progress_class:orbit-progress;
-                  animation_speed:500;
                   navButtons:true;
-                  variable_height:'.$content['variable_height'].';
-                  bullets:'. $content['bullets'] .';"';
+                  bullets:'. $bullets .';
+                  accessible:true;
+                  navButtons:true;
+                  boxOfBullets:orbit-bullets;"';
 
         return $data;
     }
