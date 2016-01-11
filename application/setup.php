@@ -77,7 +77,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @return string
 	 */
 	protected function get_supported_theme_version() {
-		return '3.5.3';
+		return '4.0.0';
 	}
 
 
