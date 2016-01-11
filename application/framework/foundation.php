@@ -7,7 +7,8 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     protected function __construct(){
         parent::__construct();
         do_action('ddl-integration_override_before_init', 'foundation', 'Foundation by ZURB');
-        add_action( 'ddl-init_integration_override', array(&$this, 'addCarouselOverrides') );
+        //add_action( 'ddl-init_integration_override', array(&$this, 'addCarouselOverrides') );
+        $this->addCarouselOverrides();
         add_action( 'ddl-init_integration_override', array(&$this, 'addImageResponsiveSupport') );
         add_filter( 'ddl-get_fluid_type_class_suffix', array( &$this, 'overrideRowSuffix'), 99, 2 );
         add_action( 'wp_head', array(&$this, 'do_header') );
@@ -47,6 +48,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         add_filter( 'ddl-carousel_control_right', array(&$this, 'get_bs_thumbnail_gui') );
         add_filter( 'ddl-get_autoplay_script', array(&$this, 'orbit_js_overrides'), 10, 2 );
         add_filter( 'ddl-slider_cell_additional_options', array(&$this, 'add_slider_controls') );
+        add_filter( 'ddl-get_carousel_indicators_bottom', array(&$this, 'add_bullets'), 10, 3 );
         add_filter( 'ddl-carousel_active_element_class', array(&$this, 'get_slider_active_class'), 10, 1 );
         add_filter( 'ddl-carousel_element_class_attribute', array(&$this, 'get_slider_element_class_attribute'), 10, 1 );
         add_filter( 'ddl-carousel_items_classes', array(&$this, 'get_slider_items_classes'), 10, 1 );
@@ -59,6 +61,18 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         <button class="orbit-next" aria-label="<?php _e('next','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Next Slide','cornerstone'); ?></span>&#10095;</button>
         <?php
         echo ob_get_clean();
+    }
+
+    public function add_bullets($html, $unique_id, $count_slides)
+    {
+        if (get_ddl_field('bullets')):?>
+            <nav class="orbit-bullets" id="bullets-<?php $unique_id;?>"> <?php
+                for ($i = 0; $i < $count_slides-1; $i++) {
+                    echo '<button class="' . ($i == 0 ? 'is-active ' : '') . '" data-slide="' . $i . '"><span class="show-for-sr">slide' . $i . 'details.</span></button>';
+                }
+                ?></nav>
+            <?php
+        endif;
     }
 
     public function get_slider_element_class_attribute( $class ){

@@ -66,6 +66,7 @@ class WPDDL_Cornerstone_Integration_Loader {
 			// @todo Update class name.
 			$loader = WPDDL_Integration_Cornerstone::get_instance();
 			$loader->set_plugin_base_name( plugin_basename( __FILE__ ) );
+			//WPDDL_Integration_Framework_Foundation::get_instance();
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate_plugin' ) );
 			add_action( 'admin_notices', array( $this, 'print_api_version_mismatch_message' ) );

@@ -215,7 +215,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
         echo '</ul>';
         if( $content['bullets'] ):
         ?>
-        <nav class="orbit-bullets"> <?php
+        <nav class="orbit-bullets" id="bullets-<?php $unique_id;?>"> <?php
 		for($i=0;$i<$count_slides;$i++) {
             echo '<button class="' . ($i == 0 ? 'is-active ' : '') . '" data-slide="' . $i . '"><span class="show-for-sr">slide' . $i . 'details.</span></button>';
         }
