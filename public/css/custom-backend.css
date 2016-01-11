@@ -8,23 +8,25 @@
 .ddl-orbit-slider-preview-img{overflow: hidden;position:relative;width: auto;height: auto;display:inline-block;}
 .ddl-orbit-slider-preview-img:before{
     content: '';
-    background-image: url('../img/cell-icon.png');
+    background-image: url('../img/cell-icon-01.png');
+    background-repeat:no-repeat;
     background-size: contain;
     position: absolute;
     width: 34px;
     height: 34px;
-    left: 2px;
-    top: 10px;
+    left: 12px;
+    top: 5px;
 }
 .ddl-tree-category-items a[data-cell-type^='cornerstone-'] > .ddl-icon:before{
     content: '';
-    background-image: url('../img/cell-icon.png');
+    background-image: url('../img/cell-icon-01.png');
     background-size: contain;
+    background-repeat:no-repeat;
     position: absolute;
     width: 34px;
     height: 34px;
-    left: 0;
-    top: -5px;
+    left: 10px;
+    top: -10px;
 }
 
 .cell-content .cell-preview div.ddl-navigation-preview{}
