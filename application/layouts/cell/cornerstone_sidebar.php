@@ -41,12 +41,12 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell extends WPDDL_Cell
  * Cell factory.
  */
 class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone sidebar';
+	protected $name = 'Cornerstone Sidebar';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell';
 
 	public function __construct(){
-        $this->description       = __('Display the Cornerstone Cornerstone sidebar element with and all its hooks.', 'ddl-layouts');
+        $this->description       = __('Display widgets placed under right sidebar widgets area.', 'ddl-layouts');
 		$this->allow_multiple = true;
 	}
 

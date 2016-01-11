@@ -40,12 +40,12 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell extends WPDDL_Cell_
  * Cell factory.
  */
 class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone footer';
+	protected $name = 'Cornerstone Footer';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell';
 
 	public function __construct(){
-        $this->description       = __('Display the Cornerstone Cornerstone footer element with and all its hooks.', 'ddl-layouts');
+        $this->description       = __('Display a widget area with Cornerstone style and hooks - This needs to be used in combination with Cornerstone Footer row mode for best display.', 'ddl-layouts');
 		$this->allow_multiple = false;
 	}
 

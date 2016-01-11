@@ -41,12 +41,12 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell extends WPDDL_Cell_Abstract
  * Cell factory.
  */
 class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone site title';
+	protected $name = 'Cornerstone Site Title';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Site_title_Cell';
 
 	public function __construct(){
-		$this->description = __('Allows to render Cornerstone site title. Suggested use in a Cornerstone site header row.', 'ddl-layouts');
+		$this->description = __('Display Site Title with theme styling - this needs to be used in combination with Cornerstone Site Header row mode for best display.', 'ddl-layouts');
 	}
 
 	protected function setCellImageUrl() {

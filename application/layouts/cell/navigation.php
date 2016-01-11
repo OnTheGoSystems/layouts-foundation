@@ -41,12 +41,12 @@ class WPDDL_Integration_Layouts_Cell_Navigation_Cell extends WPDDL_Cell_Abstract
  * Cell factory.
  */
 class WPDDL_Integration_Layouts_Cell_Navigation_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone post navigation';
+	protected $name = 'Cornerstone Post Navigation';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Navigation_Cell';
 
 	public function __construct(){
-        $this->description       = __('Display the Cornerstone Post Navigation with the pagination controls for the current page.', 'ddl-layouts');
+        $this->description       = __('Display posts (archive) navigation with theme style.', 'ddl-layouts');
         $this->preview_image_url = WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . '/img/post-navigation-cell-description.png';
 	}
 
