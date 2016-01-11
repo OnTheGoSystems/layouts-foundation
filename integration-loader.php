@@ -52,7 +52,8 @@ final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstra
 	 *
 	 */
 	protected function get_theme_name() {
-		return 'cornerstonechildtheme';
+		$theme = wp_get_theme( );
+		return $theme->Name;
 	}
 
 
