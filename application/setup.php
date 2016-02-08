@@ -18,6 +18,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     public function run(){
         parent::run();
+        $this->set_layouts_path( dirname( dirname( __FILE__) ) . DIRECTORY_SEPARATOR . 'public/layouts' );
         $this->add_shortcodes();
         return true;
     }

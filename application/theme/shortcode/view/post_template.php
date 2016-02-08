@@ -6,6 +6,9 @@
  * @subpackage Cornerstone
  * @since Cornerstone 2.2.2
  */
+
+if( have_posts() === false ) return;
+
 the_post();
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
