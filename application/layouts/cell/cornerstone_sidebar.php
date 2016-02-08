@@ -59,9 +59,9 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell_Factory extends WP
 		?>
 		<div class="cell-content">
 			<p class="cell-name"><?php echo $this->name; ?></p>
-			<div class="cell-preview">
+			<div class="cell-preview theme-integration-preview-area">
                 <div class="ddl-image-box-preview">
-                    <img src="<?php echo DDL_ICONS_SVG_REL_PATH . 'sidebar-cell.svg' ?>" height="120px">
+                    <img src="<?php echo DDL_ICONS_SVG_REL_PATH . 'widget-area.svg' ?>" height="110px">
                 </div>
 			</div>
 		</div>
