@@ -59,7 +59,7 @@ class WPDDL_Cornerstone_Integration_Loader {
 		/** @noinspection PhpUnusedParameterInspection */ $layouts_version, $integration_support_version )
 	{
 		$supported_integration_api_version = 1;
-		if( $supported_integration_api_version == $integration_support_version ) {
+		if( version_compare( '1.4.5', $layouts_version ) !== -1 && $supported_integration_api_version == $integration_support_version ) {
 			require_once 'integration-loader.php';
 
 			// We need to manually setup plugin name, since it depends on the main file name.
