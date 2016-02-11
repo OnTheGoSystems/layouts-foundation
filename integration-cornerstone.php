@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Layouts : Cornerstone
+Plugin Name: Toolset : Cornerstone
 Plugin URI: http://wp-types.com/
 Description: Layouts Integration for Cornerstone
 Author: OnTheGoSystems
