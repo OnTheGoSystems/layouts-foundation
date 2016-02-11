@@ -99,7 +99,7 @@ class WPDDL_Cornerstone_Integration_Loader {
 	public function print_api_version_mismatch_message() {
 		printf(
 			'<div class="error"><p>%s</p></div>',
-			__( 'Theme integration API version differs between Boilerplate integration and Layouts. Please check for latest versions of both plugins and try again.', 'ddl-layouts' )
+			__( 'Theme integration plugin does not support older versions of Layouts. Please update to the latest version and try again.', 'ddl-layouts' )
 		);
 	}
 
