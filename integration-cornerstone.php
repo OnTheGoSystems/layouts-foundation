@@ -1,13 +1,24 @@
 <?php
 /*
-Plugin Name: Layouts Cornerstone Integration
+Plugin Name: Toolset Cornerstone Integration
 Plugin URI: http://wp-types.com/
 Description: Layouts Integration for Cornerstone
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
-Version: 0.1
+Version: 1.0
 */
+if( !defined('WPDDL_CORNERSTONE_ABS') ) define('WPDDL_CORNERSTONE_ABS', dirname(__FILE__) );
+if( !defined('WPDDL_CORNERSTONE_ABS_PUBLIC') ) define('WPDDL_CORNERSTONE_ABS_PUBLIC', dirname(__FILE__) . '/public' );
+if( !defined('WPDDL_CORNERSTONE_ABS_APP') ) define('WPDDL_CORNERSTONE_ABS_APP', dirname( __FILE__ ) . '/application' );
+if( !defined('WPDDL_CORNERSTONE_ABS_FRAMEWORK') ) define('WPDDL_CORNERSTONE_ABS_FRAMEWORK', WPDDL_CORNERSTONE_ABS_APP . '/framework' );
+if( !defined('WPDDL_CORNERSTONE_ABS_THEME') ) define('WPDDL_CORNERSTONE_ABS_THEME', dirname( __FILE__ ) . '/application/theme' );
+if( !defined('WPDDL_CORNERSTONE_ABS_TPLS') ) define('WPDDL_CORNERSTONE_ABS_TPLS', dirname( __FILE__ ) . '/application/theme/view' );
 
+if( !defined('WPDDL_CORNERSTONE_URI') ) define('WPDDL_CORNERSTONE_URI', plugins_url( basename(dirname(__FILE__)), dirname(__FILE__) ) );
+if( !defined('WPDDL_CORNERSTONE_URI_APP') ) define('WPDDL_CORNERSTONE_URI_APP', plugins_url( basename(WPDDL_CORNERSTONE_ABS_APP), WPDDL_CORNERSTONE_ABS_APP ) );
+if( !defined('WPDDL_CORNERSTONE_URI_PUBLIC') ) define('WPDDL_CORNERSTONE_URI_PUBLIC', plugins_url( basename(WPDDL_CORNERSTONE_ABS_PUBLIC), WPDDL_CORNERSTONE_ABS_PUBLIC ) );
+if( !defined('WPDDL_CORNERSTONE_URI_TPLS') ) define('WPDDL_CORNERSTONE_URI_TPLS', plugins_url( basename(WPDDL_CORNERSTONE_ABS_TPLS), WPDDL_CORNERSTONE_ABS_TPLS ) );
+if( !defined('WPDDL_CORNERSTONE_URI_FRAMEWORK') ) define('WPDDL_CORNERSTONE_URI_FRAMEWORK', plugins_url( basename(WPDDL_CORNERSTONE_ABS_FRAMEWORK), WPDDL_CORNERSTONE_ABS_FRAMEWORK ) );
 
 /**
  * Main plugin class.
@@ -48,13 +59,14 @@ class WPDDL_Cornerstone_Integration_Loader {
 		/** @noinspection PhpUnusedParameterInspection */ $layouts_version, $integration_support_version )
 	{
 		$supported_integration_api_version = 1;
-		if( $supported_integration_api_version == $integration_support_version ) {
+		if( version_compare( $layouts_version, '1.4.5' ) !== -1 && $supported_integration_api_version == $integration_support_version ) {
 			require_once 'integration-loader.php';
 
 			// We need to manually setup plugin name, since it depends on the main file name.
 			// @todo Update class name.
 			$loader = WPDDL_Integration_Cornerstone::get_instance();
 			$loader->set_plugin_base_name( plugin_basename( __FILE__ ) );
+			//WPDDL_Integration_Framework_Foundation::get_instance();
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate_plugin' ) );
 			add_action( 'admin_notices', array( $this, 'print_api_version_mismatch_message' ) );
@@ -87,7 +99,7 @@ class WPDDL_Cornerstone_Integration_Loader {
 	public function print_api_version_mismatch_message() {
 		printf(
 			'<div class="error"><p>%s</p></div>',
-			__( 'Theme integration API version differs between Boilerplate integration and Layouts. Please check for latest versions of both plugins and try again.', 'ddl-layouts' )
+			__( 'Theme integration plugin does not support older versions of Layouts. Please update to the latest version and try again.', 'ddl-layouts' )
 		);
 	}
 

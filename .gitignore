@@ -93,5 +93,5 @@ extra/genesis
 npm-debug.log
 composer.lock
 composer.json
-autoloader.php
+library/layouts/integration/autoloader.php
 autoload.php

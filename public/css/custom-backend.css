@@ -1,1 +1,35 @@
-/* @todo Custom CSS code for the backend. */
+/*///// ROW MODES OVERRIDES ///////*/
+.presets-list li{width:20%!important;}
+/*///// ICONS /////////////////////*/
+
+.ddl-tree-category-items a[data-cell-type^='cornerstone-'] {
+    margin-top: 5px;
+}
+.ddl-orbit-slider-preview-img{overflow: hidden;position:relative;width: auto;height: auto;display:inline-block;}
+.ddl-orbit-slider-preview-img:before{
+    content: '';
+    background-image: url('../img/cell-icon-01.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    left: 12px;
+    top: 5px;
+}
+.ddl-tree-category-items a[data-cell-type^='cornerstone-'] > .ddl-icon:before{
+    content: '';
+    background-image: url('../img/cell-icon-01.png');
+    background-size: contain;
+    background-repeat:no-repeat;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    left: 10px;
+    top: -10px;
+}
+
+.cell-content .cell-preview div.ddl-navigation-preview{}
+span.full-width{width:550px;}
+.ddl-input-third-width{width:200px!important;margin:0px;padding:0px;}
+.theme-integration-preview-area{padding-top:10px!important;}
