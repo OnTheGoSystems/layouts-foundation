@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Toolset : Cornerstone
+Plugin Name: Toolset Cornerstone Integration
 Plugin URI: http://wp-types.com/
 Description: Layouts Integration for Cornerstone
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
-Version: 1.0-b1
+Version: 1.0
 */
 if( !defined('WPDDL_CORNERSTONE_ABS') ) define('WPDDL_CORNERSTONE_ABS', dirname(__FILE__) );
 if( !defined('WPDDL_CORNERSTONE_ABS_PUBLIC') ) define('WPDDL_CORNERSTONE_ABS_PUBLIC', dirname(__FILE__) . '/public' );
