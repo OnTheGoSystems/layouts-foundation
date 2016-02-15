@@ -92,7 +92,7 @@ class WPDDL_Cornerstone_Integration_Loader {
 
 
 	public function print_layouts_inactive_message() {
-		printf( '<div class="error"><p>%s</p></div>', __( 'Toolset Cornerstone ntegration plugin requires Layouts to be active.', 'ddl-layouts' ) );
+		printf( '<div class="error"><p>%s</p></div>', __( 'Toolset Cornerstone Integration plugin requires Layouts to be active.', 'ddl-layouts' ) );
 	}
 
 
