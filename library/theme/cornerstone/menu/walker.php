@@ -42,6 +42,9 @@ if ( ! class_exists( 'WPDDL_Theme_Cornerstone_Menu_Walker' ) ) :
 
         function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
+            if( is_object( $args ) === false ) return;
+            if( is_object( $item ) === false ) return;
+
             $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
             $class_names = $value = '';
