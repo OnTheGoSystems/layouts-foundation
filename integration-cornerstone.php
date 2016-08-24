@@ -5,7 +5,7 @@ Plugin URI: http://wp-types.com/
 Description: Layouts Integration for Cornerstone
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
-Version: 1.0
+Version: 1.1
 */
 if( !defined('WPDDL_CORNERSTONE_ABS') ) define('WPDDL_CORNERSTONE_ABS', dirname(__FILE__) );
 if( !defined('WPDDL_CORNERSTONE_ABS_PUBLIC') ) define('WPDDL_CORNERSTONE_ABS_PUBLIC', dirname(__FILE__) . '/public' );
@@ -20,6 +20,10 @@ if( !defined('WPDDL_CORNERSTONE_URI_PUBLIC') ) define('WPDDL_CORNERSTONE_URI_PUB
 if( !defined('WPDDL_CORNERSTONE_URI_TPLS') ) define('WPDDL_CORNERSTONE_URI_TPLS', plugins_url( basename(WPDDL_CORNERSTONE_ABS_TPLS), WPDDL_CORNERSTONE_ABS_TPLS ) );
 if( !defined('WPDDL_CORNERSTONE_URI_FRAMEWORK') ) define('WPDDL_CORNERSTONE_URI_FRAMEWORK', plugins_url( basename(WPDDL_CORNERSTONE_ABS_FRAMEWORK), WPDDL_CORNERSTONE_ABS_FRAMEWORK ) );
 
+
+if( !defined('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME') ){
+    define('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME','Cornerstone, for WordPress');
+}
 /**
  * Main plugin class.
  *
