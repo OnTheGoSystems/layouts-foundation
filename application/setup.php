@@ -42,8 +42,8 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     private function register_and_enqueue_cells_scripts(){
         wp_register_script(
-            'layouts-cornerstone-custom-js',
-            WPDDL_CORNERSTONE_URI. DIRECTORY_SEPARATOR . $this->get_custom_backend_js_path(),
+            'layouts-wpforge-custom-js',
+            WPDDL_WPFORGE_URI. DIRECTORY_SEPARATOR . $this->get_custom_backend_js_path(),
             array( 'jquery', 'underscore'),
             $this->get_supported_theme_version(),
             true
@@ -51,7 +51,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
         wp_register_script(
             'ddl-orbit-slider-cell',
-            WPDDL_CORNERSTONE_URI_PUBLIC. DIRECTORY_SEPARATOR . 'js/ddl-orbit-slider-cell.js',
+            WPDDL_WPFORGE_URI_PUBLIC. DIRECTORY_SEPARATOR . 'js/ddl-orbit-slider-cell.js',
             array( 'jquery', 'underscore'),
             $this->get_supported_theme_version(),
             true
@@ -73,7 +73,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
         ) {
             wp_enqueue_script('ddl-orbit-slider-cell');
-            wp_enqueue_script('layouts-cornerstone-custom-js');
+            wp_enqueue_script('layouts-wpforge-custom-js');
         }
     }
 
@@ -248,11 +248,11 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     protected function add_layout_row_types() {
         // Site Header
-        $cornerstone_header = new WPDDL_Integration_Layouts_Row_Cornerstone_header();
-        $cornerstone_header->setup();
+        $wpforge_header = new WPDDL_Integration_Layouts_Row_Cornerstone_header();
+        $wpforge_header->setup();
 
-        $cornerstone_footer = new WPDDL_Integration_Layouts_Row_Cornerstone_footer();
-        $cornerstone_footer->setup();
+        $wpforge_footer = new WPDDL_Integration_Layouts_Row_Cornerstone_footer();
+        $wpforge_footer->setup();
     }
 
 

@@ -14,8 +14,8 @@ DDLayout.OrbitSliderCell = function($){
     self.selected_term = null;
 
     self.init = function(){
-        jQuery(document).on('cornerstone-orbitslider.dialog-open', self.handle_open);
-        jQuery(document).on('cornerstone-orbitslider.dialog-close', self.handle_close);
+        jQuery(document).on('wpforge-orbitslider.dialog-open', self.handle_open);
+        jQuery(document).on('wpforge-orbitslider.dialog-close', self.handle_close);
     };
 
     self.handle_save = function( target_cell, cached_element, dialog ){

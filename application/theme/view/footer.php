@@ -10,6 +10,6 @@
 
 
 <?php wp_footer(); ?>
-<?php do_action( 'cornerstone_before_closing_body' ); ?>
+<?php do_action( 'wpforge_before_closing_body' ); ?>
 </body>
 </html>

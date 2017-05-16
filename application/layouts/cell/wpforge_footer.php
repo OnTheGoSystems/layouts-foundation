@@ -8,7 +8,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Cornerstone_footer extends WPDDL_Cell_Abstract {
-	protected $id = 'cornerstone-footer';
+	protected $id = 'wpforge-footer';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell_Factory';
 }
@@ -18,7 +18,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_footer extends WPDDL_Cell_Abstr
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'cornerstone-footer';
+	protected $id = 'wpforge-footer';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
@@ -26,7 +26,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell extends WPDDL_Cell_
 	 * @return string Path to the cell view.
 	 */
 	protected function setViewFile() {
-		return dirname( __FILE__ ) . '/view/cornerstone-footer.php';
+		return dirname( __FILE__ ) . '/view/wpforge-footer.php';
 	}
 
 	public function __construct($name, $width, $css_class_name, $content, $css_id, $tag)
@@ -50,7 +50,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell_Factory extends WPD
 	}
 
 	protected function setCellImageUrl() {
-		$this->cell_image_url = WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/cornerstone-footer.svg';
+		$this->cell_image_url = WPDDL_WPFORGE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/wpforge-footer.svg';
 	}
 
 	public function get_editor_cell_template(){
@@ -60,7 +60,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell_Factory extends WPD
 			<p class="cell-name"><?php echo $this->name; ?></p>
 			<div class="cell-preview">
                 <div class="ddl-image-box-preview">
-                    <img src="<?php echo WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/cornerstone-footer-preview.svg' ?>" height="130px">
+                    <img src="<?php echo WPDDL_WPFORGE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/wpforge-footer-preview.svg' ?>" height="130px">
                 </div>
 			</div>
 		</div>

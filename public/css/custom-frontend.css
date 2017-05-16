@@ -12,7 +12,7 @@
 .top-bar >.small-1:first-child, .top-bar > .medium-1:first-child, .top-bar > .large-1:first-child{width:auto;}
 .top-bar > .top-bar-left{float: left!important;}
 .post-pagination-cell{padding-top:12px;}
-.cornerstone-sidebar-cell{padding-top:16px;}
+.wpforge-sidebar-cell{padding-top:16px;}
 
 
 blockquote.layouts-instructions {

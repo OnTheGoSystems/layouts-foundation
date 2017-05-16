@@ -4,7 +4,7 @@ class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Pr
     public function setup() {
 
         $this->image =
-        $this->id   = 'cornerstone_footer';
+        $this->id   = 'wpforge_footer';
         $this->name = __('Cornerstone Footer', 'ddl-layouts');
         $this->desc = sprintf( __('%sCornerstone%s footer row', 'ddl-layouts'), '<b>', '</b>' );
 

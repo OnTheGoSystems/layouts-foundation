@@ -1,6 +1,6 @@
 <?php if (have_posts()) : ?>
 
-	<?php do_action('cornerstone_before_pagination'); ?>
+	<?php do_action('wpforge_before_pagination'); ?>
 
 <?php endif; ?>
 
@@ -9,4 +9,4 @@ if (function_exists("emm_paginate")) {
 	emm_paginate();
 } ?>
 
-<?php do_action('cornerstone_after_content'); ?>
+<?php do_action('wpforge_after_content'); ?>

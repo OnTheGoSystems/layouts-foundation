@@ -7,7 +7,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Orbit_Slider extends WPDDL_Cell_Abstract {
-	protected $id = 'cornerstone-orbitslider';
+	protected $id = 'wpforge-orbitslider';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory';
 }
@@ -16,7 +16,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider extends WPDDL_Cell_Abstract {
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'cornerstone-orbitslider';
+	protected $id = 'wpforge-orbitslider';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
@@ -24,7 +24,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell extends WPDDL_Cell_Abstra
 	 * @return string Path to the cell view.
 	 */
 	protected function setViewFile() {
-		return dirname( __FILE__ ) . '/view/cornerstone-orbitslider.php';
+		return dirname( __FILE__ ) . '/view/wpforge-orbitslider.php';
 	}
 }
 
@@ -52,7 +52,7 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 
     protected function _dialog_template() {
         ob_start();?>
-        <ul class="ddl-form js-form-cornerstone-orbitslider-wrap form-cornerstone-orbitslider-wrap">
+        <ul class="ddl-form js-form-wpforge-orbitslider-wrap form-wpforge-orbitslider-wrap">
             <!--<li>
                 <label for="<?php the_ddl_name_attr('orbit_height'); ?>" class="ddl-manual-width-201"><?php _e( 'Slider height', 'ddl-layouts' ) ?>:</label>
                 <span class="ddl-input-wrap"><input type="number" name="<?php the_ddl_name_attr('orbit_height'); ?>" value="300" class="ddl-input-half-width"><span class="ddl-measure-unit ddl-measure-unit-orbit"><?php _e( 'px', 'ddl-layouts' ) ?></span></span>
@@ -174,8 +174,8 @@ class WPDDL_Integration_Layouts_Cell_Orbit_Slider_Cell_Factory extends WPDDL_Cel
 
         echo '<ul class="orbit-container">';?>
 
-        <button class="orbit-previous" aria-label="<?php _e('previous','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Previous Slide','cornerstone'); ?></span>&#10094;</button>
-    	<button class="orbit-next" aria-label="<?php _e('next','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Next Slide','cornerstone'); ?></span>&#10095;</button>
+        <button class="orbit-previous" aria-label="<?php _e('previous','wpforge'); ?>"><span class="show-for-sr"><?php _e('Previous Slide','wpforge'); ?></span>&#10094;</button>
+    	<button class="orbit-next" aria-label="<?php _e('next','wpforge'); ?>"><span class="show-for-sr"><?php _e('Next Slide','wpforge'); ?></span>&#10095;</button>
 
         <?php
         global $post, $wp_query;

@@ -8,7 +8,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Site_title extends WPDDL_Cell_Abstract {
-	protected $id = 'cornerstone-sitetitle';
+	protected $id = 'wpforge-sitetitle';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory';
 }
@@ -18,7 +18,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title extends WPDDL_Cell_Abstract {
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Site_title_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'cornerstone-sitetitle';
+	protected $id = 'wpforge-sitetitle';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
@@ -50,7 +50,7 @@ class WPDDL_Integration_Layouts_Cell_Site_title_Cell_Factory extends WPDDL_Cell_
 	}
 
 	protected function setCellImageUrl() {
-		$this->cell_image_url = WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/site-title-cell.svg';
+		$this->cell_image_url = WPDDL_WPFORGE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/site-title-cell.svg';
 	}
 
 	public function get_editor_cell_template(){

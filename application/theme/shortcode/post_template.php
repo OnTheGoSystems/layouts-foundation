@@ -6,7 +6,7 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
     extends WPDDL_Shortcode_Abstract {
 
     public function setup() {
-        $this->setId( 'cornerstone-post-template' );
+        $this->setId( 'wpforge-post-template' );
         $this->setTemplate( dirname( __FILE__ ) . '/view/post_template.php' );
 
         $this->setMediaButton( 'Post Template' );
