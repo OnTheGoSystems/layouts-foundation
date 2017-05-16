@@ -41,7 +41,7 @@ final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstra
 	 *
 	 */
 	protected function is_theme_active() {
-		return function_exists( 'cornerstone_theme_support' );
+		return function_exists( 'wpforge_theme_support' );
 	}
 
 

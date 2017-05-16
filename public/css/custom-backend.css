@@ -2,7 +2,7 @@
 .presets-list li{width:20%!important;}
 /*///// ICONS /////////////////////*/
 
-.ddl-tree-category-items a[data-cell-type^='cornerstone-'] {
+.ddl-tree-category-items a[data-cell-type^='wpforge-'] {
     margin-top: 5px;
 }
 .ddl-orbit-slider-preview-img{overflow: hidden;position:relative;width: auto;height: auto;display:inline-block;}
@@ -17,7 +17,7 @@
     left: 12px;
     top: 5px;
 }
-.ddl-tree-category-items a[data-cell-type^='cornerstone-'] > .ddl-icon:before{
+.ddl-tree-category-items a[data-cell-type^='wpforge-'] > .ddl-icon:before{
     content: '';
     background-image: url('../img/cell-icon-01.png');
     background-size: contain;

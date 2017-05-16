@@ -8,7 +8,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Navigation extends WPDDL_Cell_Abstract {
-	protected $id = 'cornerstone-navigation';
+	protected $id = 'wpforge-navigation';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Navigation_Cell_Factory';
 }
@@ -18,7 +18,7 @@ class WPDDL_Integration_Layouts_Cell_Navigation extends WPDDL_Cell_Abstract {
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Navigation_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'cornerstone-navigation';
+	protected $id = 'wpforge-navigation';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
@@ -47,11 +47,11 @@ class WPDDL_Integration_Layouts_Cell_Navigation_Cell_Factory extends WPDDL_Cell_
 
 	public function __construct(){
         $this->description       = __('Display posts (archive) navigation with theme style.', 'ddl-layouts');
-        $this->preview_image_url = WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . '/img/post-navigation-cell-description.png';
+        $this->preview_image_url = WPDDL_WPFORGE_URI_PUBLIC . DIRECTORY_SEPARATOR . '/img/post-navigation-cell-description.png';
 	}
 
 	protected function setCellImageUrl() {
-		$this->cell_image_url = WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/post-navigation.svg';
+		$this->cell_image_url = WPDDL_WPFORGE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/post-navigation.svg';
 	}
 
 	public function get_editor_cell_template(){
@@ -61,7 +61,7 @@ class WPDDL_Integration_Layouts_Cell_Navigation_Cell_Factory extends WPDDL_Cell_
 			<p class="cell-name"><?php echo $this->name; ?></p>
 			<div class="cell-preview">
                 <div class="ddl-image-box-preview">
-                    <img src="<?php echo WPDDL_CORNERSTONE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/post-navigation-preview.svg'; ?>" height="130px">
+                    <img src="<?php echo WPDDL_WPFORGE_URI_PUBLIC . DIRECTORY_SEPARATOR . 'img/post-navigation-preview.svg'; ?>" height="130px">
                 </div>
 			</div>
 		</div>

@@ -8,7 +8,7 @@
  */
 
 /**
- * class cornerstone_walker
+ * class wpforge_walker
  * Custom output to enable the the ZURB Navigation style.
  * Courtesy of Kriesi.at. http://www.kriesi.at/archives/improve-your-wordpress-navigation-menu-output
  * From required+ Foundation http://themes.required.ch

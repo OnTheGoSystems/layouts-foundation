@@ -8,7 +8,7 @@
  * Cell abstraction. Defines the cell with Layouts.
  */
 class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar extends WPDDL_Cell_Abstract {
-	protected $id = 'cornerstone-sidebar';
+	protected $id = 'wpforge-sidebar';
 
 	protected $factory = 'WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell_Factory';
 }
@@ -18,7 +18,7 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar extends WPDDL_Cell_Abst
  * Represents the actual cell.
  */
 class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell extends WPDDL_Cell_Abstract_Cell {
-	protected $id = 'cornerstone-sidebar';
+	protected $id = 'wpforge-sidebar';
 
 	/**
 	 * Each cell has it's view, which is a file that is included when the cell is being rendered.
@@ -26,12 +26,12 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell extends WPDDL_Cell
 	 * @return string Path to the cell view.
 	 */
 	protected function setViewFile() {
-		return dirname( __FILE__ ) . '/view/cornerstone-sidebar.php';
+		return dirname( __FILE__ ) . '/view/wpforge-sidebar.php';
 	}
 
 	public function __construct($name, $width, $css_class_name, $content, $css_id, $tag)
 	{
-		$css_class_name = $css_class_name . ' cornerstone-sidebar-cell';
+		$css_class_name = $css_class_name . ' wpforge-sidebar-cell';
 		parent::__construct($name, $width, $css_class_name, $content, $css_id, $tag);
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-if( !defined('WPDDL_FOUNDATION_ASSETS') ) define('WPDDL_FOUNDATION_ASSETS', WPDDL_CORNERSTONE_URI_FRAMEWORK . DIRECTORY_SEPARATOR . 'assets');
+if( !defined('WPDDL_FOUNDATION_ASSETS') ) define('WPDDL_FOUNDATION_ASSETS', WPDDL_WPFORGE_URI_FRAMEWORK . DIRECTORY_SEPARATOR . 'assets');
 
 class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration_Abstract{
 
@@ -57,8 +57,8 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
 
     public function get_additional_carousel_top_controls( $html ){
         ob_start();?>
-        <button class="orbit-previous" aria-label="<?php _e('previous','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Previous Slide','cornerstone'); ?></span>&#10094;</button>
-        <button class="orbit-next" aria-label="<?php _e('next','cornerstone'); ?>"><span class="show-for-sr"><?php _e('Next Slide','cornerstone'); ?></span>&#10095;</button>
+        <button class="orbit-previous" aria-label="<?php _e('previous','wpforge'); ?>"><span class="show-for-sr"><?php _e('Previous Slide','wpforge'); ?></span>&#10094;</button>
+        <button class="orbit-next" aria-label="<?php _e('next','wpforge'); ?>"><span class="show-for-sr"><?php _e('Next Slide','wpforge'); ?></span>&#10095;</button>
         <?php
         echo ob_get_clean();
     }
@@ -167,7 +167,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
     }
 
     private function print_favicon(){
-        $uri = WPDDL_CORNERSTONE_URI_FRAMEWORK . DIRECTORY_SEPARATOR . 'assets/images/favicons/';
+        $uri = WPDDL_WPFORGE_URI_FRAMEWORK . DIRECTORY_SEPARATOR . 'assets/images/favicons/';
         ob_start();?>
         <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $uri; ?>favicon.ico">
         <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $uri; ?>favicon.ico">

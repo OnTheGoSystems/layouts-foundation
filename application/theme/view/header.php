@@ -12,5 +12,5 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<?php do_action( 'cornerstone_after_body' ); ?>
+<?php do_action( 'wpforge_after_body' ); ?>
 

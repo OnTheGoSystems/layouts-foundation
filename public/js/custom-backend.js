@@ -31,7 +31,7 @@ DDLayout.ThemeIntegrations.MenuCellOverides = function ($) {
         $top = $('input[name="ddl-layout-topbar"]');
 
         self.init_pointer_event();
-        self.handle_menu_top_cornerstone();
+        self.handle_menu_top_wpforge();
     };
 
     self.init_pointer_event = function () {
@@ -45,7 +45,7 @@ DDLayout.ThemeIntegrations.MenuCellOverides = function ($) {
         $dir.off('change', self.menu_dir_change);
     };
 
-    self.handle_menu_top_cornerstone = function(){
+    self.handle_menu_top_wpforge = function(){
         $dir.on('change', self.menu_dir_change);
     };
 
