@@ -21,9 +21,9 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
     }
 
     public function run(){
-        $this->set_layouts_path( dirname( dirname( __FILE__) ) . DIRECTORY_SEPARATOR . 'public/layouts' );
+       // $this->set_layouts_path( dirname( dirname( __FILE__) ) . DIRECTORY_SEPARATOR . 'public/layouts' );
         parent::run();
-        $this->add_shortcodes();
+      //  $this->add_shortcodes();
         return true;
     }
 
@@ -37,7 +37,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     public function admin_enqueue(){
         parent::admin_enqueue();
-        $this->register_and_enqueue_cells_scripts();
+       // $this->register_and_enqueue_cells_scripts();
     }
 
     private function register_and_enqueue_cells_scripts(){
@@ -82,7 +82,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @return string
 	 */
 	protected function get_supported_theme_version() {
-		return '4.0.0';
+		return '6.0';
 	}
 
 
@@ -215,11 +215,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
     }
 
     public function add_shortcodes() {
-        // post-template
-        $post_content = new WPDDL_Integration_Theme_Shortcode_Post_Template();
-        $post_content->setup();
-
-        return $this;
+        //
     }
 
 	/**
@@ -228,31 +224,11 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @todo Setup your custom layouts cell here.
 	 */
 	protected function add_layouts_cells() {
-        $sidebar_cell = new WPDDL_Integration_Layouts_Cell_Site_title();
-        $sidebar_cell->setup();
-
-        $navigation_cell = new WPDDL_Integration_Layouts_Cell_Navigation();
-        $navigation_cell->setup();
-
-        $sidebar_cell = new WPDDL_Integration_Layouts_Cell_WPForge_sidebar();
-        $sidebar_cell->setup();
-
-        if( function_exists( 'Orbit' ) ){
-            $orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
-            $orbit_slider->setup();
-        }
-
-        $footer_cell = new WPDDL_Integration_Layouts_Cell_WPForge_footer();
-        $footer_cell->setup();
+        //
 	}
 
     protected function add_layout_row_types() {
-        // Site Header
-        $wpforge_header = new WPDDL_Integration_Layouts_Row_WPForge_header();
-        $wpforge_header->setup();
-
-        $wpforge_footer = new WPDDL_Integration_Layouts_Row_WPForge_footer();
-        $wpforge_footer->setup();
+       //
     }
 
 
