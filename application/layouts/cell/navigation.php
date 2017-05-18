@@ -41,7 +41,7 @@ class WPDDL_Integration_Layouts_Cell_Navigation_Cell extends WPDDL_Cell_Abstract
  * Cell factory.
  */
 class WPDDL_Integration_Layouts_Cell_Navigation_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone Post Navigation';
+	protected $name = 'WPForge Post Navigation';
 
 	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Navigation_Cell';
 

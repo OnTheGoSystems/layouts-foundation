@@ -7,17 +7,17 @@
 /**
  * Cell abstraction. Defines the cell with Layouts.
  */
-class WPDDL_Integration_Layouts_Cell_Cornerstone_footer extends WPDDL_Cell_Abstract {
+class WPDDL_Integration_Layouts_Cell_WPForge_footer extends WPDDL_Cell_Abstract {
 	protected $id = 'wpforge-footer';
 
-	protected $factory = 'WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell_Factory';
+	protected $factory = 'WPDDL_Integration_Layouts_Cell_WPForge_footer_Cell_Factory';
 }
 
 
 /**
  * Represents the actual cell.
  */
-class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell extends WPDDL_Cell_Abstract_Cell {
+class WPDDL_Integration_Layouts_Cell_WPForge_footer_Cell extends WPDDL_Cell_Abstract_Cell {
 	protected $id = 'wpforge-footer';
 
 	/**
@@ -39,13 +39,13 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell extends WPDDL_Cell_
 /**
  * Cell factory.
  */
-class WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone Footer';
+class WPDDL_Integration_Layouts_Cell_WPForge_footer_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
+	protected $name = 'WPForge Footer';
 
-	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Cornerstone_footer_Cell';
+	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_WPForge_footer_Cell';
 
 	public function __construct(){
-        $this->description       = __('Display a widget area with Cornerstone style and hooks - This needs to be used in combination with Cornerstone Footer row mode for best display.', 'ddl-layouts');
+        $this->description       = __('Display a widget area with WPForge style and hooks - This needs to be used in combination with WPForge Footer row mode for best display.', 'ddl-layouts');
 		$this->allow_multiple = false;
 	}
 

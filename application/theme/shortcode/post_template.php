@@ -29,7 +29,7 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
             $this->getId(),
             $field->getId(),
             'default',
-            'Cornerstone Output with all Hooks',
+            'WPForge Output with all Hooks',
             true
         ) );
 
@@ -38,7 +38,7 @@ class WPDDL_Integration_Theme_Shortcode_Post_Template
             $this->getId(),
             $field->getId(),
             'editable',
-            'Cornerstone Output - editable in Editor',
+            'WPForge Output - editable in Editor',
             false,
             dirname( __FILE__ ) . '/view/post_template_editable.php'
         ) );

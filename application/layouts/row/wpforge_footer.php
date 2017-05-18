@@ -1,12 +1,12 @@
 <?php
-class WPDDL_Integration_Layouts_Row_Cornerstone_footer extends WPDDL_Row_Type_Preset_Fullwidth_Background{
+class WPDDL_Integration_Layouts_Row_WPForge_footer extends WPDDL_Row_Type_Preset_Fullwidth_Background{
 
     public function setup() {
 
         $this->image =
         $this->id   = 'wpforge_footer';
-        $this->name = __('Cornerstone Footer', 'ddl-layouts');
-        $this->desc = sprintf( __('%sCornerstone%s footer row', 'ddl-layouts'), '<b>', '</b>' );
+        $this->name = __('WPForge Footer', 'ddl-layouts');
+        $this->desc = sprintf( __('%sWPForge%s footer row', 'ddl-layouts'), '<b>', '</b>' );
 
         $this->setCssId( 'footer' );
 

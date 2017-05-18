@@ -7,17 +7,17 @@
 /**
  * Cell abstraction. Defines the cell with Layouts.
  */
-class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar extends WPDDL_Cell_Abstract {
+class WPDDL_Integration_Layouts_Cell_WPForge_sidebar extends WPDDL_Cell_Abstract {
 	protected $id = 'wpforge-sidebar';
 
-	protected $factory = 'WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell_Factory';
+	protected $factory = 'WPDDL_Integration_Layouts_Cell_WPForge_sidebar_Cell_Factory';
 }
 
 
 /**
  * Represents the actual cell.
  */
-class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell extends WPDDL_Cell_Abstract_Cell {
+class WPDDL_Integration_Layouts_Cell_WPForge_sidebar_Cell extends WPDDL_Cell_Abstract_Cell {
 	protected $id = 'wpforge-sidebar';
 
 	/**
@@ -40,10 +40,10 @@ class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell extends WPDDL_Cell
 /**
  * Cell factory.
  */
-class WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
-	protected $name = 'Cornerstone Sidebar';
+class WPDDL_Integration_Layouts_Cell_WPForge_sidebar_Cell_Factory extends WPDDL_Cell_Abstract_Cell_Factory {
+	protected $name = 'WPForge Sidebar';
 
-	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar_Cell';
+	protected $cell_class = 'WPDDL_Integration_Layouts_Cell_WPForge_sidebar_Cell';
 
 	public function __construct(){
         $this->description       = __('Display widgets placed under right sidebar widgets area.', 'ddl-layouts');

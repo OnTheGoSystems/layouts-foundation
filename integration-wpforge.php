@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Toolset Cornerstone Integration
+Plugin Name: Toolset WP-Forge Integration
 Plugin URI: http://wp-types.com/
-Description: Layouts Integration for Cornerstone
+Description: Layouts Integration for WPForge
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
-Version: 1.1
+Version: 0.1
 */
 if( !defined('WPDDL_WPFORGE_ABS') ) define('WPDDL_WPFORGE_ABS', dirname(__FILE__) );
 if( !defined('WPDDL_WPFORGE_ABS_PUBLIC') ) define('WPDDL_WPFORGE_ABS_PUBLIC', dirname(__FILE__) . '/public' );
@@ -22,7 +22,7 @@ if( !defined('WPDDL_WPFORGE_URI_FRAMEWORK') ) define('WPDDL_WPFORGE_URI_FRAMEWOR
 
 
 if( !defined('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME') ){
-    define('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME','Cornerstone, for WordPress');
+    define('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME','WP-Forge');
 }
 /**
  * Main plugin class.
@@ -30,9 +30,10 @@ if( !defined('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME') ){
  * Checks for Layouts compatibility and ensures the integration begins at the right time.
  *
  */
-class WPDDL_Cornerstone_Integration_Loader {
+class WPDDL_WPForge_Integration_Loader {
 
 	private static $instance = null;
+
 
 	public static function getInstance() {
 		if( null == self::$instance ) {
@@ -68,9 +69,9 @@ class WPDDL_Cornerstone_Integration_Loader {
 
 			// We need to manually setup plugin name, since it depends on the main file name.
 			// @todo Update class name.
-			$loader = WPDDL_Integration_Cornerstone::get_instance();
+			$loader = WPDDL_Integration_WPForge::get_instance();
 			$loader->set_plugin_base_name( plugin_basename( __FILE__ ) );
-			//WPDDL_Integration_Framework_Foundation::get_instance();
+
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate_plugin' ) );
 			add_action( 'admin_notices', array( $this, 'print_api_version_mismatch_message' ) );
@@ -96,7 +97,7 @@ class WPDDL_Cornerstone_Integration_Loader {
 
 
 	public function print_layouts_inactive_message() {
-		printf( '<div class="error"><p>%s</p></div>', __( 'Toolset Cornerstone Integration plugin requires Layouts to be active.', 'ddl-layouts' ) );
+		printf( '<div class="error"><p>%s</p></div>', __( 'Toolset WPForge Integration plugin requires Layouts to be active.', 'ddl-layouts' ) );
 	}
 
 
@@ -110,4 +111,4 @@ class WPDDL_Cornerstone_Integration_Loader {
 }
 
 // @todo Update class name.
-WPDDL_Cornerstone_Integration_Loader::getInstance();
+WPDDL_WPForge_Integration_Loader::getInstance();
