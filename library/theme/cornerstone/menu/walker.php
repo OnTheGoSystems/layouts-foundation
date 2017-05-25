@@ -3,8 +3,8 @@
  * Menu walkers
  *
  * @package WordPress
- * @subpackage Cornerstone
- * @since Cornerstone 3.5.3
+ * @subpackage WPForge
+ * @since WPForge 3.5.3
  */
 
 /**
@@ -13,8 +13,8 @@
  * Courtesy of Kriesi.at. http://www.kriesi.at/archives/improve-your-wordpress-navigation-menu-output
  * From required+ Foundation http://themes.required.ch
  */
-if ( ! class_exists( 'WPDDL_Theme_Cornerstone_Menu_Walker' ) ) :
-    class WPDDL_Theme_Cornerstone_Menu_Walker extends Walker_Nav_Menu {
+if ( ! class_exists( 'WPDDL_Theme_WPForge_Menu_Walker' ) ) :
+    class WPDDL_Theme_WPForge_Menu_Walker extends Walker_Nav_Menu {
 
         /**
          * Specify the item type to allow different walkers

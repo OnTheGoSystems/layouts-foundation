@@ -3,8 +3,8 @@
  * The default template for displaying content. Used for both single and index/archive/search.
  *
  * @package WordPress
- * @subpackage Cornerstone
- * @since Cornerstone 2.2.2
+ * @subpackage WPForge
+ * @since WPForge 2.2.2
  */
 ?>
 

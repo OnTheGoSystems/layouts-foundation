@@ -9,7 +9,7 @@
  *
  *
  */
-final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstract {
+final class WPDDL_Integration_WPForge extends WPDDL_Theme_Integration_Abstract {
 
 
 	/**
@@ -41,7 +41,7 @@ final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstra
 	 *
 	 */
 	protected function is_theme_active() {
-		return function_exists( 'wpforge_theme_support' );
+		return function_exists( 'wpforge_setup' );
 	}
 
 
@@ -59,4 +59,4 @@ final class WPDDL_Integration_Cornerstone extends WPDDL_Theme_Integration_Abstra
 
 }
 // @todo Update the class name.
-WPDDL_Integration_Cornerstone::get_instance();
+WPDDL_Integration_WPForge::get_instance();

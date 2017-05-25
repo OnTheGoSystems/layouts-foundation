@@ -11,19 +11,18 @@
 /** @noinspection PhpUndefinedClassInspection */
 class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
+    private $foundation = null;
 
 	protected function __construct(){
-         add_action('init', array(&$this, 'run_foundation') );
+        $this->foundation = $this->run_foundation();
     }
 
     public function run_foundation(){
-        WPDDL_Integration_Framework_Foundation::get_instance();
+        return WPDDL_Integration_Framework_Foundation::get_instance();
     }
 
     public function run(){
-        $this->set_layouts_path( dirname( dirname( __FILE__) ) . DIRECTORY_SEPARATOR . 'public/layouts' );
         parent::run();
-        $this->add_shortcodes();
         return true;
     }
 
@@ -37,7 +36,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     public function admin_enqueue(){
         parent::admin_enqueue();
-        $this->register_and_enqueue_cells_scripts();
+       // $this->register_and_enqueue_cells_scripts();
     }
 
     private function register_and_enqueue_cells_scripts(){
@@ -57,7 +56,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
             true
         );
 
-        wp_localize_script('ddl-orbit-slider-cell', 'CornerstoneOrbit', array(
+        wp_localize_script('ddl-orbit-slider-cell', 'WPForgeOrbit', array(
                 'Settings' => array(
                     'strings' => array(
                         'select_default' => __('Select', 'ddl-layouts')
@@ -82,7 +81,7 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @return string
 	 */
 	protected function get_supported_theme_version() {
-		return '4.0.0';
+		return '6.0';
 	}
 
 
@@ -214,13 +213,6 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         }
     }
 
-    public function add_shortcodes() {
-        // post-template
-        $post_content = new WPDDL_Integration_Theme_Shortcode_Post_Template();
-        $post_content->setup();
-
-        return $this;
-    }
 
 	/**
 	 * Add custom theme elements to Layouts.
@@ -228,31 +220,11 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	 * @todo Setup your custom layouts cell here.
 	 */
 	protected function add_layouts_cells() {
-        $sidebar_cell = new WPDDL_Integration_Layouts_Cell_Site_title();
-        $sidebar_cell->setup();
-
-        $navigation_cell = new WPDDL_Integration_Layouts_Cell_Navigation();
-        $navigation_cell->setup();
-
-        $sidebar_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_sidebar();
-        $sidebar_cell->setup();
-
-        if( function_exists( 'Orbit' ) ){
-            $orbit_slider = new WPDDL_Integration_Layouts_Cell_Orbit_Slider();
-            $orbit_slider->setup();
-        }
-
-        $footer_cell = new WPDDL_Integration_Layouts_Cell_Cornerstone_footer();
-        $footer_cell->setup();
+        //
 	}
 
     protected function add_layout_row_types() {
-        // Site Header
-        $wpforge_header = new WPDDL_Integration_Layouts_Row_Cornerstone_header();
-        $wpforge_header->setup();
-
-        $wpforge_footer = new WPDDL_Integration_Layouts_Row_Cornerstone_footer();
-        $wpforge_footer->setup();
+       //
     }
 
 
@@ -268,8 +240,8 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     public function get_menu_walker( $walker, $style ){
         $is_top = get_ddl_field('menu_dir') === 'nav-horizontal' && get_ddl_field('topbar');
-        if ( class_exists( 'WPDDL_Theme_Cornerstone_Menu_Walker' ) ){
-            $walker = new WPDDL_Theme_Cornerstone_Menu_Walker(
+        if ( class_exists( 'WPDDL_Theme_WPForge_Menu_Walker' ) ){
+            $walker = new WPDDL_Theme_WPForge_Menu_Walker(
                 array(
                     'in_top_bar' => $is_top,
                     'item_type' => 'li'
@@ -283,9 +255,9 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
     public function menu_additional_fields(){
         ob_start();?>
         <p>
-            <label for="<?php the_ddl_name_attr('topbar'); ?>" class="ddl-manual-width-190"><?php _e('Cornerstone top menu', 'ddl-layouts'); ?></label>
+            <label for="<?php the_ddl_name_attr('topbar'); ?>" class="ddl-manual-width-190"><?php _e('WPForge top menu', 'ddl-layouts'); ?></label>
             &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="<?php the_ddl_name_attr('topbar'); ?>" value="1" checked />
-            <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'Allows to render Cornerstone Foundation based top menu bar inside a Cornerstone header row.', 'ddl-layouts' ) ?>"></i></span>
+            <span><i class="fa fa-question-circle question-mark-and-the-mysterians js-ddl-question-mark" data-tooltip-text="<?php _e( 'Allows to render WPForge Foundation based top menu bar inside a WPForge header row.', 'ddl-layouts' ) ?>"></i></span>
         </p>
         <p>
             <label for="<?php the_ddl_name_attr('menu_align'); ?>" class="ddl-manual-width-190"><?php _e('Alignment', 'ddl-layouts'); ?></label>
