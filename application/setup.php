@@ -224,7 +224,8 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 	}
 
     protected function add_layout_row_types() {
-       //
+       $bare_cell_row = new WPDDL_Integration_Layouts_Row_WPForge_bare_cell_row();
+       $bare_cell_row->setup();
     }
 
 
