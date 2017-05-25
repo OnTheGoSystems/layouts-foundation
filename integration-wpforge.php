@@ -110,5 +110,4 @@ class WPDDL_WPForge_Integration_Loader {
 
 }
 
-// @todo Update class name.
 WPDDL_WPForge_Integration_Loader::getInstance();

@@ -11,19 +11,18 @@
 /** @noinspection PhpUndefinedClassInspection */
 class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
+    private $foundation = null;
 
 	protected function __construct(){
-         add_action('init', array(&$this, 'run_foundation') );
+        $this->foundation = $this->run_foundation();
     }
 
     public function run_foundation(){
-        WPDDL_Integration_Framework_Foundation::get_instance();
+        return WPDDL_Integration_Framework_Foundation::get_instance();
     }
 
     public function run(){
-       // $this->set_layouts_path( dirname( dirname( __FILE__) ) . DIRECTORY_SEPARATOR . 'public/layouts' );
         parent::run();
-      //  $this->add_shortcodes();
         return true;
     }
 
@@ -214,9 +213,6 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
         }
     }
 
-    public function add_shortcodes() {
-        //
-    }
 
 	/**
 	 * Add custom theme elements to Layouts.

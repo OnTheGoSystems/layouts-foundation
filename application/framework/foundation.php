@@ -19,7 +19,8 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
 	    add_filter( 'ddl-get_column_prefix_medium', array( $this, 'get_column_prefix_medium' ), 11, 1 );
 	    add_filter( 'ddl-get_column_prefix_large', array( $this, 'get_column_prefix_large' ), 11, 1 );
 	    add_filter( 'ddl-get_offset_prefix', array( $this, 'get_offset_prefix' ), 11, 1  );
-	    add_filter( 'ddl-get_framework_prefixes_data', array( $this, 'get_framework_prefixes_data' ), 11 );
+	    add_filter( 'ddl-get_framework_prefixes_data', array( $this, 'get_framework_prefixes_data' ), 11, 1 );
+	    add_filter( 'ddl-get_container_fluid_class', array($this, 'get_container_fluid_class'), 10, 2 );
     }
 
     public function get_column_prefix_default_option( ){
@@ -28,6 +29,10 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
 
     public function get_offset_prefix( ){
         return 'push-';
+    }
+
+    public function get_container_fluid_class( $class, $mode ){
+        return 'container';
     }
 
     public function do_header(){
@@ -55,7 +60,7 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
 	}
 
     public function get_additional_column_class(){
-        return 'columns';
+        return ' columns';
     }
 
     public function addImageResponsiveSupport(){
@@ -98,10 +103,10 @@ class WPDDL_Integration_Framework_Foundation extends WPDDL_Framework_Integration
         echo ob_get_clean();
     }
 
-    public function get_framework_prefixes_data(){
+    public function get_framework_prefixes_data( $dummy = array() ){
 	    return array(
 		    'small-' => array('label' => __('Small', 'ddl-layouts'), 'size' => __('768px and up', 'ddl-layouts')  ),
-		    'medium' => array('label' => __('Medium', 'ddl-layouts'), 'size' => __('992px and up', 'ddl-layouts') ),
+		    'medium-' => array('label' => __('Medium', 'ddl-layouts'), 'size' => __('992px and up', 'ddl-layouts') ),
 		    'large-' => array('label' => __('Large', 'ddl-layouts'), 'size' => __('1200px and up', 'ddl-layouts') )
 	    );
     }
