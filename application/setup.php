@@ -24,8 +24,8 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
     private function reset_bootstrap(){
 	    add_filter( 'toolset_set_boostrap_option', array($this, 'toolset_set_boostrap_option'), 99, 1 );
-	    add_filter( 'toolset-toolset_bootstrap_version_filter', '__return_true', 99 );
-	    add_filter( 'toolset-toolset_bootstrap_version_manually_selected', '__return_false', 99 );
+	    add_filter( 'toolset-toolset_bootstrap_version_filter', array($this, 'toolset_set_boostrap_option'), 99, 1 );
+	    add_filter( 'toolset-toolset_bootstrap_version_manually_selected', array($this, 'toolset_set_boostrap_option'), 99, 1 );
     }
 
     public function toolset_set_boostrap_option( $option ){
