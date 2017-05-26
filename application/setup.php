@@ -15,10 +15,21 @@ class WPDDL_Integration_Setup extends WPDDL_Theme_Integration_Setup_Abstract {
 
 	protected function __construct(){
         $this->foundation = $this->run_foundation();
+        $this->reset_bootstrap();
     }
 
     public function run_foundation(){
         return WPDDL_Integration_Framework_Foundation::get_instance();
+    }
+
+    private function reset_bootstrap(){
+	    add_filter( 'toolset_set_boostrap_option', array($this, 'toolset_set_boostrap_option'), 99, 1 );
+	    add_filter( 'toolset-toolset_bootstrap_version_filter', '__return_true', 99 );
+	    add_filter( 'toolset-toolset_bootstrap_version_manually_selected', '__return_false', 99 );
+    }
+
+    public function toolset_set_boostrap_option( $option ){
+        return -1;
     }
 
     public function run(){
