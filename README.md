@@ -1,5 +1,5 @@
-# Layout Plugin 
-## Drag and Drop Layouts for WordPress
+# Toolset Layouts WP-Forge Integration 
+## Compatibility Layer for Foudation and Drag and Drop Layouts for WordPress
 
 
 *Contributors:* Amir Helzer, Riccardo Strobbia, Ivan Maricic
