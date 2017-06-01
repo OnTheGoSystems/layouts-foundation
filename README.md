@@ -1,5 +1,5 @@
 # Toolset Layouts WP-Forge Integration 
-## Compatibility Layer for Foudation and Drag and Drop Layouts for WordPress
+## Compatibility Layer for Foundation and Drag and Drop Layouts for WordPress
 
 
 *Contributors:* Amir Helzer, Riccardo Strobbia, Ivan Maricic
