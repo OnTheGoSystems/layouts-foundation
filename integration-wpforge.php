@@ -5,7 +5,7 @@ Plugin URI: http://wp-types.com/
 Description: Layouts Integration for WPForge
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com
-Version: 0.1
+Version: 1.0
 */
 if( !defined('WPDDL_WPFORGE_ABS') ) define('WPDDL_WPFORGE_ABS', dirname(__FILE__) );
 if( !defined('WPDDL_WPFORGE_ABS_PUBLIC') ) define('WPDDL_WPFORGE_ABS_PUBLIC', dirname(__FILE__) . '/public' );
@@ -23,6 +23,10 @@ if( !defined('WPDDL_WPFORGE_URI_FRAMEWORK') ) define('WPDDL_WPFORGE_URI_FRAMEWOR
 
 if( !defined('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME') ){
     define('TOOLSET_INTEGRATION_PLUGIN_THEME_NAME','WP-Forge');
+}
+
+if( !defined('WPDDL_WPFORGE_VERSION') ){
+	define('WPDDL_WPFORGE_VERSION','1.0');
 }
 /**
  * Main plugin class.

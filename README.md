@@ -1,4 +1,4 @@
-# Layout Plugin
+# Layout Plugin 
 ## Drag and Drop Layouts for WordPress
 
 
@@ -26,4 +26,5 @@ The plugin code can be used as boilerplate code for any theme using Foundation f
 ## Installation
 
 1. Upload 'wp-layout' to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+2. Activate the plugin through the 'Plugins' menu in WordPress. 
+
