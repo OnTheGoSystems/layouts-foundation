@@ -1,4 +1,4 @@
-# Toolset Layouts WP-Forge Integration 
+# Toolset Layouts Foundation Integration 
 ## Compatibility Layer for Foundation and Drag and Drop Layouts for WordPress
 
 
