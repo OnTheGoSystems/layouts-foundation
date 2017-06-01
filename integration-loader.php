@@ -41,7 +41,7 @@ final class WPDDL_Integration_WPForge extends WPDDL_Theme_Integration_Abstract {
 	 *
 	 */
 	protected function is_theme_active() {
-		return function_exists( 'wpforge_setup' );
+		return true;
 	}
 
 
